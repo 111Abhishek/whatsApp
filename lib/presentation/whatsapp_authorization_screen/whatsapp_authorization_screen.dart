@@ -1,10 +1,13 @@
+import 'controller/whatsapp_authorization_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_subtitle_three.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_subtitle_two.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 
-class WhatsappAuthorizationScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class WhatsappAuthorizationScreen
+    extends GetWidget<WhatsappAuthorizationController> {
   const WhatsappAuthorizationScreen({Key? key})
       : super(
           key: key,
@@ -21,7 +24,7 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
+              _buildNavigationBar(),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 19.v),
                 child: Column(
@@ -29,7 +32,7 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
                     SizedBox(
                       width: 260.h,
                       child: Text(
-                        "Please confirm your country code and enter your phone number ",
+                        "msg_please_confirm_your".tr,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
@@ -39,7 +42,7 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 17.v),
-                    _buildForm(context),
+                    _buildForm(),
                     SizedBox(height: 5.v),
                   ],
                 ),
@@ -52,7 +55,7 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.v),
       decoration: AppDecoration.outlineGray,
@@ -64,11 +67,11 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
           CustomAppBar(
             centerTitle: true,
             title: AppbarSubtitleThree(
-              text: "Phone number",
+              text: "lbl_phone_number".tr,
             ),
             actions: [
               AppbarSubtitleTwo(
-                text: "Done",
+                text: "lbl_done".tr,
                 margin: EdgeInsets.symmetric(horizontal: 16.h),
               ),
             ],
@@ -79,7 +82,7 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildForm(BuildContext context) {
+  Widget _buildForm() {
     return SizedBox(
       height: 89.v,
       width: double.maxFinite,
@@ -102,7 +105,7 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: 45.v),
                     child: Text(
-                      "United States",
+                      "lbl_united_states".tr,
                       style: CustomTextStyles.bodyLargeLightblueA700,
                     ),
                   ),
@@ -145,7 +148,7 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
                               bottom: 2.v,
                             ),
                             child: Text(
-                              "+1",
+                              "lbl_1".tr,
                               style: CustomTextStyles.headlineMediumBlack900,
                             ),
                           ),
@@ -159,7 +162,7 @@ class WhatsappAuthorizationScreen extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Text(
-                                    "phone number",
+                                    "lbl_phone_number2".tr,
                                     style: theme.textTheme.headlineMedium,
                                   ),
                                 ),

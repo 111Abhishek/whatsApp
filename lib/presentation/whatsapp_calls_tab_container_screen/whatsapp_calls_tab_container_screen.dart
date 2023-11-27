@@ -1,3 +1,4 @@
+import 'controller/whatsapp_calls_tab_container_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/presentation/whatsapp_calls_edit_page/whatsapp_calls_edit_page.dart';
@@ -5,29 +6,13 @@ import 'package:what_sapp/widgets/app_bar/appbar_title.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 
-class WhatsappCallsTabContainerScreen extends StatefulWidget {
+// ignore_for_file: must_be_immutable
+class WhatsappCallsTabContainerScreen
+    extends GetWidget<WhatsappCallsTabContainerController> {
   const WhatsappCallsTabContainerScreen({Key? key})
       : super(
           key: key,
         );
-
-  @override
-  WhatsappCallsTabContainerScreenState createState() =>
-      WhatsappCallsTabContainerScreenState();
-}
-
-class WhatsappCallsTabContainerScreenState
-    extends State<WhatsappCallsTabContainerScreen>
-    with TickerProviderStateMixin {
-  late TabController tabviewController;
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-
-  @override
-  void initState() {
-    super.initState();
-    tabviewController = TabController(length: 2, vsync: this);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,24 +20,24 @@ class WhatsappCallsTabContainerScreenState
 
     return SafeArea(
       child: Scaffold(
-        appBar: _buildAppBar(context),
+        appBar: _buildAppBar(),
         body: SizedBox(
           height: 732.v,
           child: TabBarView(
-            controller: tabviewController,
+            controller: controller.tabviewController,
             children: [
               WhatsappCallsEditPage(),
               WhatsappCallsEditPage(),
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+  PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       height: 36.v,
       title: Container(
@@ -62,7 +47,7 @@ class WhatsappCallsTabContainerScreenState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppbarTitle(
-              text: "Edit",
+              text: "lbl_edit".tr,
               margin: EdgeInsets.only(
                 top: 2.v,
                 bottom: 4.v,
@@ -82,7 +67,7 @@ class WhatsappCallsTabContainerScreenState
                 ),
               ),
               child: TabBar(
-                controller: tabviewController,
+                controller: controller.tabviewController,
                 labelPadding: EdgeInsets.zero,
                 labelColor: theme.colorScheme.primary,
                 labelStyle: TextStyle(
@@ -110,7 +95,7 @@ class WhatsappCallsTabContainerScreenState
                         bottom: 4.v,
                       ),
                       child: Text(
-                        "All",
+                        "lbl_all".tr,
                       ),
                     ),
                   ),
@@ -121,7 +106,7 @@ class WhatsappCallsTabContainerScreenState
                         bottom: 4.v,
                       ),
                       child: Text(
-                        "Missed",
+                        "lbl_missed2".tr,
                       ),
                     ),
                   ),
@@ -135,7 +120,7 @@ class WhatsappCallsTabContainerScreenState
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );

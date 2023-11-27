@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 
-class CustomBottomBar extends StatefulWidget {
-  CustomBottomBar({this.onChanged});
+class CustomBottomBar extends StatelessWidget {
+  CustomBottomBar({
+    Key? key,
+    this.onChanged,
+  }) : super(
+          key: key,
+        );
 
-  Function(BottomBarEnum)? onChanged;
-
-  @override
-  CustomBottomBarState createState() => CustomBottomBarState();
-}
-
-class CustomBottomBarState extends State<CustomBottomBar> {
-  int selectedIndex = 0;
+  RxInt selectedIndex = 0.obs;
 
   List<BottomMenuModel> bottomMenuList = [
     BottomMenuModel(
       icon: ImageConstant.imgNavStatusLightBlueA700,
       activeIcon: ImageConstant.imgNavStatusLightBlueA700,
-      title: "Status",
+      title: "lbl_status".tr,
       type: BottomBarEnum.Status,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgIconPrimarycontainer,
       activeIcon: ImageConstant.imgIconPrimarycontainer,
-      title: "Calls",
+      title: "lbl_calls".tr,
       type: BottomBarEnum.Calls,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgIconPrimarycontainer22x26,
       activeIcon: ImageConstant.imgIconPrimarycontainer22x26,
-      title: "Camera",
+      title: "lbl_camera".tr,
       type: BottomBarEnum.Camera,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgNavChats,
       activeIcon: ImageConstant.imgNavChats,
-      title: "Chats",
+      title: "lbl_chats".tr,
       type: BottomBarEnum.Chats,
     ),
     BottomMenuModel(
       icon: ImageConstant.imgIconPrimarycontainer25x25,
       activeIcon: ImageConstant.imgIconPrimarycontainer25x25,
-      title: "Settings",
+      title: "lbl_settings".tr,
       type: BottomBarEnum.Settings,
     )
   ];
+
+  Function(BottomBarEnum)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -64,66 +64,67 @@ class CustomBottomBarState extends State<CustomBottomBar> {
           ),
         ],
       ),
-      child: BottomNavigationBar(
-        backgroundColor: Colors.transparent,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedFontSize: 0,
-        elevation: 0,
-        currentIndex: selectedIndex,
-        type: BottomNavigationBarType.fixed,
-        items: List.generate(bottomMenuList.length, (index) {
-          return BottomNavigationBarItem(
-            icon: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomImageView(
-                  imagePath: bottomMenuList[index].icon,
-                  height: 24.v,
-                  width: 23.h,
-                  color: theme.colorScheme.primaryContainer.withOpacity(1),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.v),
-                  child: Text(
-                    bottomMenuList[index].title ?? "",
-                    style: theme.textTheme.labelMedium!.copyWith(
-                      color: theme.colorScheme.primaryContainer,
+      child: Obx(
+        () => BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedFontSize: 0,
+          elevation: 0,
+          currentIndex: selectedIndex.value,
+          type: BottomNavigationBarType.fixed,
+          items: List.generate(bottomMenuList.length, (index) {
+            return BottomNavigationBarItem(
+              icon: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomImageView(
+                    imagePath: bottomMenuList[index].icon,
+                    height: 24.v,
+                    width: 23.h,
+                    color: theme.colorScheme.primaryContainer.withOpacity(1),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.v),
+                    child: Text(
+                      bottomMenuList[index].title ?? "",
+                      style: theme.textTheme.labelMedium!.copyWith(
+                        color: theme.colorScheme.primaryContainer,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            activeIcon: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomImageView(
-                  imagePath: bottomMenuList[index].activeIcon,
-                  height: 26.adaptSize,
-                  width: 26.adaptSize,
-                  color: appTheme.lightBlueA700,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.v),
-                  child: Text(
-                    bottomMenuList[index].title ?? "",
-                    style: CustomTextStyles.labelMediumLightblueA700.copyWith(
-                      color: appTheme.lightBlueA700,
+                ],
+              ),
+              activeIcon: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomImageView(
+                    imagePath: bottomMenuList[index].activeIcon,
+                    height: 26.adaptSize,
+                    width: 26.adaptSize,
+                    color: appTheme.lightBlueA700,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 3.v),
+                    child: Text(
+                      bottomMenuList[index].title ?? "",
+                      style: CustomTextStyles.labelMediumLightblueA700.copyWith(
+                        color: appTheme.lightBlueA700,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            label: '',
-          );
-        }),
-        onTap: (index) {
-          selectedIndex = index;
-          widget.onChanged?.call(bottomMenuList[index].type);
-          setState(() {});
-        },
+                ],
+              ),
+              label: '',
+            );
+          }),
+          onTap: (index) {
+            selectedIndex.value = index;
+            onChanged?.call(bottomMenuList[index].type);
+          },
+        ),
       ),
     );
   }

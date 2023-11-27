@@ -1,12 +1,20 @@
+import '../controller/whatsapp_calls_controller.dart';
+import '../models/whatsappcalls_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 
 // ignore: must_be_immutable
 class WhatsappcallsItemWidget extends StatelessWidget {
-  const WhatsappcallsItemWidget({Key? key})
-      : super(
+  WhatsappcallsItemWidget(
+    this.whatsappcallsItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  WhatsappcallsItemModel whatsappcallsItemModelObj;
+
+  var controller = Get.find<WhatsappCallsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +28,16 @@ class WhatsappcallsItemWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomImageView(
-            imagePath: ImageConstant.imgOval40x40,
-            height: 40.adaptSize,
-            width: 40.adaptSize,
-            radius: BorderRadius.circular(
-              20.h,
+          Obx(
+            () => CustomImageView(
+              imagePath: whatsappcallsItemModelObj.circleImage!.value,
+              height: 40.adaptSize,
+              width: 40.adaptSize,
+              radius: BorderRadius.circular(
+                20.h,
+              ),
+              margin: EdgeInsets.only(top: 1.v),
             ),
-            margin: EdgeInsets.only(top: 1.v),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -37,9 +47,11 @@ class WhatsappcallsItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Martin Randolph",
-                  style: theme.textTheme.bodyLarge,
+                Obx(
+                  () => Text(
+                    whatsappcallsItemModelObj.martinRandolph!.value,
+                    style: theme.textTheme.bodyLarge,
+                  ),
                 ),
                 SizedBox(height: 2.v),
                 Row(
@@ -52,9 +64,11 @@ class WhatsappcallsItemWidget extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 6.h),
-                      child: Text(
-                        "outgoing",
-                        style: CustomTextStyles.bodyMedium_1,
+                      child: Obx(
+                        () => Text(
+                          whatsappcallsItemModelObj.outgoing!.value,
+                          style: CustomTextStyles.bodyMedium_1,
+                        ),
                       ),
                     ),
                   ],
@@ -68,9 +82,11 @@ class WhatsappcallsItemWidget extends StatelessWidget {
               top: 13.v,
               bottom: 12.v,
             ),
-            child: Text(
-              "10/13/19",
-              style: theme.textTheme.bodyMedium,
+            child: Obx(
+              () => Text(
+                whatsappcallsItemModelObj.oneHundredOneThousandThreeHund!.value,
+                style: theme.textTheme.bodyMedium,
+              ),
             ),
           ),
           CustomImageView(

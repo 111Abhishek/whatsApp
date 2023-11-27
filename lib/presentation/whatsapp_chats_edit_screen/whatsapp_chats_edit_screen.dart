@@ -1,8 +1,11 @@
 import '../whatsapp_chats_edit_screen/widgets/whatsappchatsedit_item_widget.dart';
+import 'controller/whatsapp_chats_edit_controller.dart';
+import 'models/whatsappchatsedit_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 
-class WhatsappChatsEditScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class WhatsappChatsEditScreen extends GetWidget<WhatsappChatsEditController> {
   const WhatsappChatsEditScreen({Key? key})
       : super(
           key: key,
@@ -18,15 +21,15 @@ class WhatsappChatsEditScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
-              _buildActions(context),
+              _buildNavigationBar(),
+              _buildActions(),
               SizedBox(
                 height: 628.v,
                 width: double.maxFinite,
                 child: Stack(
                   alignment: Alignment.bottomRight,
                   children: [
-                    _buildWhatsAppChatsEdit(context),
+                    _buildWhatsAppChatsEdit(),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Padding(
@@ -37,7 +40,7 @@ class WhatsappChatsEditScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    _buildChatActions(context),
+                    _buildChatActions(),
                   ],
                 ),
               ),
@@ -49,7 +52,7 @@ class WhatsappChatsEditScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -63,12 +66,12 @@ class WhatsappChatsEditScreen extends StatelessWidget {
         children: [
           SizedBox(height: 3.v),
           Text(
-            "Done",
+            "lbl_done".tr,
             style: CustomTextStyles.titleMediumLightblueA70017,
           ),
           SizedBox(height: 15.v),
           Text(
-            "Chats",
+            "lbl_chats".tr,
             style: theme.textTheme.displaySmall,
           ),
         ],
@@ -77,7 +80,7 @@ class WhatsappChatsEditScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildActions(BuildContext context) {
+  Widget _buildActions() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -91,14 +94,14 @@ class WhatsappChatsEditScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 1.v),
             child: Text(
-              "Broadcast Lists",
+              "lbl_broadcast_lists".tr,
               style: CustomTextStyles.bodyLargeGray40001,
             ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 1.v),
             child: Text(
-              "New Group",
+              "lbl_new_group".tr,
               style: CustomTextStyles.bodyLargeGray40001,
             ),
           ),
@@ -108,41 +111,51 @@ class WhatsappChatsEditScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildWhatsAppChatsEdit(BuildContext context) {
+  Widget _buildWhatsAppChatsEdit() {
     return Align(
       alignment: Alignment.topCenter,
       child: Padding(
         padding: EdgeInsets.only(bottom: 36.v),
-        child: ListView.separated(
-          physics: BouncingScrollPhysics(),
-          shrinkWrap: true,
-          separatorBuilder: (
-            context,
-            index,
-          ) {
-            return Padding(
-              padding: EdgeInsets.symmetric(vertical: 0.5.v),
-              child: SizedBox(
-                width: 257.h,
-                child: Divider(
-                  height: 1.v,
-                  thickness: 1.v,
-                  color: theme.colorScheme.onPrimary.withOpacity(0.29),
+        child: Obx(
+          () => ListView.separated(
+            physics: BouncingScrollPhysics(),
+            shrinkWrap: true,
+            separatorBuilder: (
+              context,
+              index,
+            ) {
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 0.5.v),
+                child: SizedBox(
+                  width: 257.h,
+                  child: Divider(
+                    height: 1.v,
+                    thickness: 1.v,
+                    color: theme.colorScheme.onPrimary.withOpacity(0.29),
+                  ),
                 ),
-              ),
-            );
-          },
-          itemCount: 8,
-          itemBuilder: (context, index) {
-            return WhatsappchatseditItemWidget();
-          },
+              );
+            },
+            itemCount: controller.whatsappChatsEditModelObj.value
+                .whatsappchatseditItemList.value.length,
+            itemBuilder: (context, index) {
+              WhatsappchatseditItemModel model = controller
+                  .whatsappChatsEditModelObj
+                  .value
+                  .whatsappchatseditItemList
+                  .value[index];
+              return WhatsappchatseditItemWidget(
+                model,
+              );
+            },
+          ),
         ),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildChatActions(BuildContext context) {
+  Widget _buildChatActions() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -157,21 +170,21 @@ class WhatsappChatsEditScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(bottom: 29.v),
               child: Text(
-                "Archive",
+                "lbl_archive".tr,
                 style: CustomTextStyles.bodyLargeGray40001,
               ),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 29.v),
               child: Text(
-                "Read All",
+                "lbl_read_all".tr,
                 style: CustomTextStyles.bodyLargeGray40001,
               ),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 29.v),
               child: Text(
-                "Delete",
+                "lbl_delete".tr,
                 style: CustomTextStyles.bodyLargeGray40001,
               ),
             ),

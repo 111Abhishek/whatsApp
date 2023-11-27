@@ -1,13 +1,21 @@
+import '../controller/whatsapp_calls_edit_controller.dart';
+import '../models/whatsappcallsedit_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/custom_icon_button.dart';
 
 // ignore: must_be_immutable
 class WhatsappcallseditItemWidget extends StatelessWidget {
-  const WhatsappcallseditItemWidget({Key? key})
-      : super(
+  WhatsappcallseditItemWidget(
+    this.whatsappcallseditItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  WhatsappcallseditItemModel whatsappcallseditItemModelObj;
+
+  var controller = Get.find<WhatsappCallsEditController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +40,18 @@ class WhatsappcallseditItemWidget extends StatelessWidget {
               ),
             ),
           ),
-          CustomImageView(
-            imagePath: ImageConstant.imgOval40x40,
-            height: 40.adaptSize,
-            width: 40.adaptSize,
-            radius: BorderRadius.circular(
-              20.h,
-            ),
-            margin: EdgeInsets.only(
-              left: 9.h,
-              top: 1.v,
+          Obx(
+            () => CustomImageView(
+              imagePath: whatsappcallseditItemModelObj.circleImage!.value,
+              height: 40.adaptSize,
+              width: 40.adaptSize,
+              radius: BorderRadius.circular(
+                20.h,
+              ),
+              margin: EdgeInsets.only(
+                left: 9.h,
+                top: 1.v,
+              ),
             ),
           ),
           Padding(
@@ -52,9 +62,11 @@ class WhatsappcallseditItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Martin Randolph",
-                  style: theme.textTheme.bodyLarge,
+                Obx(
+                  () => Text(
+                    whatsappcallseditItemModelObj.martinRandolph!.value,
+                    style: theme.textTheme.bodyLarge,
+                  ),
                 ),
                 SizedBox(height: 2.v),
                 Row(
@@ -67,9 +79,11 @@ class WhatsappcallseditItemWidget extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 6.h),
-                      child: Text(
-                        "outgoing",
-                        style: CustomTextStyles.bodyMedium_1,
+                      child: Obx(
+                        () => Text(
+                          whatsappcallseditItemModelObj.outgoing!.value,
+                          style: CustomTextStyles.bodyMedium_1,
+                        ),
                       ),
                     ),
                   ],
@@ -84,9 +98,12 @@ class WhatsappcallseditItemWidget extends StatelessWidget {
               right: 3.h,
               bottom: 12.v,
             ),
-            child: Text(
-              "10/13/19",
-              style: theme.textTheme.bodyMedium,
+            child: Obx(
+              () => Text(
+                whatsappcallseditItemModelObj
+                    .oneHundredOneThousandThreeHund!.value,
+                style: theme.textTheme.bodyMedium,
+              ),
             ),
           ),
         ],

@@ -1,3 +1,4 @@
+import 'controller/whatsapp_contact_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
@@ -7,7 +8,9 @@ import 'package:what_sapp/widgets/app_bar/appbar_subtitle_three.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_icon_button.dart';
 
-class WhatsappContactInfoScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class WhatsappContactInfoScreen
+    extends GetWidget<WhatsappContactInfoController> {
   const WhatsappContactInfoScreen({Key? key})
       : super(
           key: key,
@@ -23,7 +26,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
+              _buildNavigationBar(),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -33,18 +36,18 @@ class WhatsappContactInfoScreen extends StatelessWidget {
                         height: 375.adaptSize,
                         width: 375.adaptSize,
                       ),
-                      _buildInfoAndActions(context),
+                      _buildInfoAndActions(),
                       SizedBox(height: 19.v),
-                      _buildRows(context),
+                      _buildRows(),
                       SizedBox(height: 19.v),
-                      _buildThirtyEight(context),
+                      _buildThirtyEight(),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Divider(
                           indent: 59.h,
                         ),
                       ),
-                      _buildSearch(context),
+                      _buildSearch(),
                     ],
                   ),
                 ),
@@ -57,7 +60,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.v),
       decoration: AppDecoration.outlineGray,
@@ -72,11 +75,11 @@ class WhatsappContactInfoScreen extends StatelessWidget {
           child: Row(
             children: [
               AppbarSubtitleOne(
-                text: "Martha Craig",
+                text: "lbl_martha_craig".tr,
                 margin: EdgeInsets.only(top: 1.v),
               ),
               AppbarSubtitleThree(
-                text: "Contact Info",
+                text: "lbl_contact_info".tr,
                 margin: EdgeInsets.only(left: 12.h),
               ),
             ],
@@ -84,7 +87,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
         ),
         actions: [
           AppbarSubtitle(
-            text: "Edit",
+            text: "lbl_edit".tr,
             margin: EdgeInsets.symmetric(horizontal: 16.h),
           ),
         ],
@@ -93,7 +96,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildInfoAndActions(BuildContext context) {
+  Widget _buildInfoAndActions() {
     return SizedBox(
       height: 126.v,
       width: double.maxFinite,
@@ -115,12 +118,12 @@ class WhatsappContactInfoScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 67.v),
                   Text(
-                    "Design adds value faster, than it adds cost",
+                    "msg_design_adds_value".tr,
                     style: CustomTextStyles.bodyMediumBlack900,
                   ),
                   SizedBox(height: 6.v),
                   Text(
-                    "Dec 18, 2018",
+                    "lbl_dec_18_2018".tr,
                     style: CustomTextStyles.bodySmallBluegray40012,
                   ),
                 ],
@@ -146,12 +149,12 @@ class WhatsappContactInfoScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Martha Craig",
+                          "lbl_martha_craig".tr,
                           style: CustomTextStyles.titleMediumMedium,
                         ),
                         SizedBox(height: 4.v),
                         Text(
-                          "+1 202 555 0181",
+                          "lbl_1_202_555_0181".tr,
                           style: CustomTextStyles.bodySmallBluegray400,
                         ),
                       ],
@@ -219,16 +222,15 @@ class WhatsappContactInfoScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows(BuildContext context) {
+  Widget _buildRows() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildRow(
-            context,
-            starredMessages: "Media, Links, and Docs",
-            none: "12",
+            starredMessages: "msg_media_links_and".tr,
+            none: "lbl_12".tr,
           ),
           Align(
             alignment: Alignment.centerRight,
@@ -237,9 +239,8 @@ class WhatsappContactInfoScreen extends StatelessWidget {
             ),
           ),
           _buildRow(
-            context,
-            starredMessages: "Starred Messages",
-            none: "None",
+            starredMessages: "msg_starred_messages".tr,
+            none: "lbl_none".tr,
           ),
           Align(
             alignment: Alignment.centerRight,
@@ -279,7 +280,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
                     bottom: 5.v,
                   ),
                   child: Text(
-                    "Chat Search",
+                    "lbl_chat_search".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
@@ -303,16 +304,15 @@ class WhatsappContactInfoScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildThirtyEight(BuildContext context) {
+  Widget _buildThirtyEight() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildRow(
-            context,
-            starredMessages: "Mute",
-            none: "No",
+            starredMessages: "lbl_mute".tr,
+            none: "lbl_no".tr,
           ),
           Align(
             alignment: Alignment.centerRight,
@@ -321,9 +321,8 @@ class WhatsappContactInfoScreen extends StatelessWidget {
             ),
           ),
           _buildRow(
-            context,
-            starredMessages: "Custom Tone",
-            none: "Default (Note)",
+            starredMessages: "lbl_custom_tone".tr,
+            none: "lbl_default_note".tr,
           ),
           Align(
             alignment: Alignment.centerRight,
@@ -332,9 +331,8 @@ class WhatsappContactInfoScreen extends StatelessWidget {
             ),
           ),
           _buildRow(
-            context,
-            starredMessages: "Save to Camera Roll",
-            none: "Default",
+            starredMessages: "msg_save_to_camera_roll".tr,
+            none: "lbl_default".tr,
           ),
         ],
       ),
@@ -342,7 +340,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildSearch(BuildContext context) {
+  Widget _buildSearch() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -394,7 +392,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Encryption",
+                    "lbl_encryption".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                   Row(
@@ -405,7 +403,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
                           width: 260.h,
                           margin: EdgeInsets.only(top: 2.v),
                           child: Text(
-                            "Messages to this chat and calls are secrured with end-to-end encryption. Tap to verify.",
+                            "msg_messages_to_this".tr,
                             maxLines: null,
                             overflow: TextOverflow.ellipsis,
                             style: CustomTextStyles.bodySmallBluegray400_1
@@ -436,8 +434,7 @@ class WhatsappContactInfoScreen extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildRow(
-    BuildContext context, {
+  Widget _buildRow({
     required String starredMessages,
     required String none,
   }) {

@@ -1,5 +1,7 @@
+import 'controller/whatsapp_notifications_tab_container_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
+import 'package:what_sapp/core/utils/validation_functions.dart';
 import 'package:what_sapp/presentation/whatsapp_notifications_page/whatsapp_notifications_page.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_subtitle_one.dart';
@@ -8,33 +10,15 @@ import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 import 'package:what_sapp/widgets/custom_text_form_field.dart';
 
-class WhatsappNotificationsTabContainerScreen extends StatefulWidget {
-  const WhatsappNotificationsTabContainerScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappNotificationsTabContainerScreen
+    extends GetWidget<WhatsappNotificationsTabContainerController> {
+  WhatsappNotificationsTabContainerScreen({Key? key})
       : super(
           key: key,
         );
 
-  @override
-  WhatsappNotificationsTabContainerScreenState createState() =>
-      WhatsappNotificationsTabContainerScreenState();
-}
-
-class WhatsappNotificationsTabContainerScreenState
-    extends State<WhatsappNotificationsTabContainerScreen>
-    with TickerProviderStateMixin {
-  TextEditingController descriptionController = TextEditingController();
-
-  late TabController tabviewController;
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    tabviewController = TabController(length: 2, vsync: this);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +33,23 @@ class WhatsappNotificationsTabContainerScreenState
             width: double.maxFinite,
             child: Column(
               children: [
-                _buildNavigationBar(context),
+                _buildNavigationBar(),
                 Column(
                   children: [
                     SizedBox(height: 16.v),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.h),
                       child: CustomTextFormField(
-                        controller: descriptionController,
-                        hintText:
-                            "WARNING: Push Notifications are disabled. To enable visit:\niPhone Settings > Notifications > WhatsApp",
+                        controller: controller.descriptionController,
+                        hintText: "msg_warning_push_notifications".tr,
                         textInputAction: TextInputAction.done,
                         textInputType: TextInputType.phone,
+                        validator: (value) {
+                          if (!isValidPhone(value)) {
+                            return "err_msg_please_enter_valid_phone_number".tr;
+                          }
+                          return null;
+                        },
                         contentPadding: EdgeInsets.symmetric(horizontal: 23.h),
                         borderDecoration:
                             TextFormFieldStyleHelper.underLinePrimaryContainer,
@@ -73,17 +62,17 @@ class WhatsappNotificationsTabContainerScreenState
                       child: Padding(
                         padding: EdgeInsets.only(left: 16.h),
                         child: Text(
-                          "Message notifications".toUpperCase(),
+                          "msg_message_notifications".tr.toUpperCase(),
                           style: CustomTextStyles.bodySmallGray700,
                         ),
                       ),
                     ),
                     SizedBox(height: 6.v),
-                    _buildFortyOne(context),
+                    _buildFortyOne(),
                     SizedBox(
                       height: 460.v,
                       child: TabBarView(
-                        controller: tabviewController,
+                        controller: controller.tabviewController,
                         children: [
                           WhatsappNotificationsPage(),
                           WhatsappNotificationsPage(),
@@ -96,13 +85,13 @@ class WhatsappNotificationsTabContainerScreenState
             ),
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.v),
       decoration: AppDecoration.outlineGray,
@@ -122,11 +111,11 @@ class WhatsappNotificationsTabContainerScreenState
               child: Row(
                 children: [
                   AppbarSubtitleOne(
-                    text: "Settings",
+                    text: "lbl_settings".tr,
                     margin: EdgeInsets.only(top: 1.v),
                   ),
                   AppbarSubtitleThree(
-                    text: "Notifications",
+                    text: "lbl_notifications".tr,
                     margin: EdgeInsets.only(left: 46.h),
                   ),
                 ],
@@ -139,7 +128,7 @@ class WhatsappNotificationsTabContainerScreenState
   }
 
   /// Section Widget
-  Widget _buildFortyOne(BuildContext context) {
+  Widget _buildFortyOne() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
@@ -158,7 +147,7 @@ class WhatsappNotificationsTabContainerScreenState
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.v),
                   child: Text(
-                    "Show Notifications",
+                    "msg_show_notifications".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
@@ -166,7 +155,7 @@ class WhatsappNotificationsTabContainerScreenState
                   height: 31.v,
                   width: 51.h,
                   child: TabBar(
-                    controller: tabviewController,
+                    controller: controller.tabviewController,
                     labelPadding: EdgeInsets.zero,
                     tabs: [
                       Tab(
@@ -218,7 +207,7 @@ class WhatsappNotificationsTabContainerScreenState
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );

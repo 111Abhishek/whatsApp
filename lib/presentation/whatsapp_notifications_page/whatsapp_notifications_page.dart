@@ -1,27 +1,18 @@
+import 'controller/whatsapp_notifications_controller.dart';
+import 'models/whatsapp_notifications_model.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/custom_switch.dart';
 
-// ignore_for_file: must_be_immutable
-class WhatsappNotificationsPage extends StatefulWidget {
-  const WhatsappNotificationsPage({Key? key})
+class WhatsappNotificationsPage extends StatelessWidget {
+  WhatsappNotificationsPage({Key? key})
       : super(
           key: key,
         );
 
-  @override
-  WhatsappNotificationsPageState createState() =>
-      WhatsappNotificationsPageState();
-}
+  WhatsappNotificationsController controller = Get.put(
+      WhatsappNotificationsController(WhatsappNotificationsModel().obs));
 
-class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
-    with AutomaticKeepAliveClientMixin<WhatsappNotificationsPage> {
-  bool isSelectedSwitch = false;
-
-  bool isSelectedSwitch1 = false;
-
-  @override
-  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -34,9 +25,8 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
           child: Column(
             children: [
               _buildRow(
-                context,
-                sound: "Sound",
-                note: "Note",
+                sound: "lbl_sound".tr,
+                note: "lbl_note".tr,
               ),
               SizedBox(height: 31.v),
               Align(
@@ -44,30 +34,30 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
                 child: Padding(
                   padding: EdgeInsets.only(left: 16.h),
                   child: Text(
-                    "Group notifications".toUpperCase(),
+                    "msg_group_notifications".tr.toUpperCase(),
                     style: CustomTextStyles.bodySmallGray700,
                   ),
                 ),
               ),
               SizedBox(height: 6.v),
-              _buildFortyTwo(context),
+              _buildFortyTwo(),
               SizedBox(height: 35.v),
-              _buildInAppNotifications(context),
+              _buildInAppNotifications(),
               SizedBox(height: 35.v),
-              _buildRow3(context),
+              _buildRow3(),
               SizedBox(height: 8.v),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: EdgeInsets.only(left: 16.h),
                   child: Text(
-                    "Preview message text inside new message notifications.",
+                    "msg_preview_message".tr,
                     style: CustomTextStyles.bodySmallGray700,
                   ),
                 ),
               ),
               SizedBox(height: 22.v),
-              _buildRows(context),
+              _buildRows(),
             ],
           ),
         ),
@@ -76,7 +66,7 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
   }
 
   /// Section Widget
-  Widget _buildFortyTwo(BuildContext context) {
+  Widget _buildFortyTwo() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
@@ -95,15 +85,17 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.v),
                   child: Text(
-                    "Show Notifications",
+                    "msg_show_notifications".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
-                CustomSwitch(
-                  value: isSelectedSwitch,
-                  onChange: (value) {
-                    isSelectedSwitch = value;
-                  },
+                Obx(
+                  () => CustomSwitch(
+                    value: controller.isSelectedSwitch.value,
+                    onChange: (value) {
+                      controller.isSelectedSwitch.value = value;
+                    },
+                  ),
                 ),
               ],
             ),
@@ -112,9 +104,8 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
             indent: 16.h,
           ),
           _buildRow(
-            context,
-            sound: "Sound",
-            note: "Note",
+            sound: "lbl_sound".tr,
+            note: "lbl_note".tr,
           ),
         ],
       ),
@@ -122,7 +113,7 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
   }
 
   /// Section Widget
-  Widget _buildInAppNotifications(BuildContext context) {
+  Widget _buildInAppNotifications() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -137,12 +128,12 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "In-App Notifications",
+                "msg_in_app_notifications".tr,
                 style: theme.textTheme.bodyLarge,
               ),
               SizedBox(height: 3.v),
               Text(
-                "Banners, Sounds, Vibrate",
+                "msg_banners_sounds".tr,
                 style: CustomTextStyles.bodySmallBlack900,
               ),
             ],
@@ -163,7 +154,7 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
   }
 
   /// Section Widget
-  Widget _buildRow3(BuildContext context) {
+  Widget _buildRow3() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -177,15 +168,17 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
           Padding(
             padding: EdgeInsets.symmetric(vertical: 5.v),
             child: Text(
-              "Show Preview",
+              "lbl_show_preview".tr,
               style: theme.textTheme.bodyLarge,
             ),
           ),
-          CustomSwitch(
-            value: isSelectedSwitch1,
-            onChange: (value) {
-              isSelectedSwitch1 = value;
-            },
+          Obx(
+            () => CustomSwitch(
+              value: controller.isSelectedSwitch1.value,
+              onChange: (value) {
+                controller.isSelectedSwitch1.value = value;
+              },
+            ),
           ),
         ],
       ),
@@ -193,7 +186,7 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
   }
 
   /// Section Widget
-  Widget _buildRows(BuildContext context) {
+  Widget _buildRows() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -208,7 +201,7 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
         children: [
           SizedBox(height: 2.v),
           Text(
-            "Reset Notification Settings",
+            "msg_reset_notification".tr,
             style: CustomTextStyles.bodyLargeRed50001,
           ),
         ],
@@ -217,8 +210,7 @@ class WhatsappNotificationsPageState extends State<WhatsappNotificationsPage>
   }
 
   /// Common widget
-  Widget _buildRow(
-    BuildContext context, {
+  Widget _buildRow({
     required String sound,
     required String note,
   }) {

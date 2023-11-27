@@ -1,3 +1,4 @@
+import 'controller/whatsapp_starred_messages_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
@@ -5,7 +6,9 @@ import 'package:what_sapp/widgets/app_bar/appbar_subtitle_one.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_subtitle_three.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 
-class WhatsappStarredMessagesScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class WhatsappStarredMessagesScreen
+    extends GetWidget<WhatsappStarredMessagesController> {
   const WhatsappStarredMessagesScreen({Key? key})
       : super(
           key: key,
@@ -21,7 +24,7 @@ class WhatsappStarredMessagesScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
+              _buildNavigationBar(),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 24.h),
                 child: Column(
@@ -38,14 +41,14 @@ class WhatsappStarredMessagesScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 26.v),
                     Text(
-                      "No Starred Messages",
+                      "msg_no_starred_messages".tr,
                       style: CustomTextStyles.titleMediumOnPrimary,
                     ),
                     SizedBox(height: 10.v),
                     SizedBox(
                       width: 327.h,
                       child: Text(
-                        "Tap and hold on any message to star it, so you can easily find it later.",
+                        "msg_tap_and_hold_on".tr,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
@@ -65,7 +68,7 @@ class WhatsappStarredMessagesScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 11.v),
       decoration: AppDecoration.outlineGray,
@@ -80,11 +83,11 @@ class WhatsappStarredMessagesScreen extends StatelessWidget {
           child: Row(
             children: [
               AppbarSubtitleOne(
-                text: "Settings",
+                text: "lbl_settings".tr,
                 margin: EdgeInsets.only(bottom: 1.v),
               ),
               AppbarSubtitleThree(
-                text: "Starred Messages",
+                text: "msg_starred_messages".tr,
                 margin: EdgeInsets.only(left: 24.h),
               ),
             ],

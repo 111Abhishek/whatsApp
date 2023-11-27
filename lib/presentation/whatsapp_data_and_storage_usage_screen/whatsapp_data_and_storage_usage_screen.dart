@@ -1,3 +1,4 @@
+import 'controller/whatsapp_data_and_storage_usage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
@@ -7,15 +8,13 @@ import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 import 'package:what_sapp/widgets/custom_switch.dart';
 
-class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
-  WhatsappDataAndStorageUsageScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappDataAndStorageUsageScreen
+    extends GetWidget<WhatsappDataAndStorageUsageController> {
+  const WhatsappDataAndStorageUsageScreen({Key? key})
       : super(
           key: key,
         );
-
-  bool isSelectedSwitch = false;
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
+              _buildNavigationBar(),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 29.v),
                 child: Column(
@@ -36,12 +35,12 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 16.h),
                       child: Text(
-                        "Media auto-download".toUpperCase(),
+                        "msg_media_auto_download".tr.toUpperCase(),
                         style: CustomTextStyles.bodySmallGray700,
                       ),
                     ),
                     SizedBox(height: 5.v),
-                    _buildOne(context),
+                    _buildOne(),
                     SizedBox(height: 7.v),
                     Container(
                       width: 323.h,
@@ -50,7 +49,7 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
                         right: 35.h,
                       ),
                       child: Text(
-                        "Voice Messages are always automatically downloaded for the best communication experience.",
+                        "msg_voice_messages_are".tr,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: CustomTextStyles.bodySmallGray700.copyWith(
@@ -62,12 +61,12 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 16.h),
                       child: Text(
-                        "Call Settings".toUpperCase(),
+                        "lbl_call_settings".tr.toUpperCase(),
                         style: CustomTextStyles.bodySmallGray700,
                       ),
                     ),
                     SizedBox(height: 5.v),
-                    _buildRow6(context),
+                    _buildRow6(),
                     SizedBox(height: 7.v),
                     Container(
                       width: 308.h,
@@ -76,7 +75,7 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
                         right: 50.h,
                       ),
                       child: Text(
-                        "Lower the amount of data used during a WhatsAoo call \non cellular.",
+                        "msg_lower_the_amount".tr,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: CustomTextStyles.bodySmallGray700.copyWith(
@@ -85,7 +84,7 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 25.v),
-                    _buildRows(context),
+                    _buildRows(),
                     SizedBox(height: 5.v),
                   ],
                 ),
@@ -93,13 +92,13 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 11.v),
       decoration: AppDecoration.outlineGray,
@@ -114,11 +113,11 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
           child: Row(
             children: [
               AppbarSubtitleOne(
-                text: "Settings",
+                text: "lbl_settings".tr,
                 margin: EdgeInsets.only(bottom: 1.v),
               ),
               AppbarSubtitleThree(
-                text: "Data and Storage Usage",
+                text: "msg_data_and_storage".tr,
                 margin: EdgeInsets.only(left: 8.h),
               ),
             ],
@@ -129,40 +128,36 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildOne(BuildContext context) {
+  Widget _buildOne() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildRow(
-            context,
-            audio: "Photos",
-            wiFi: "Wi-Fi and Cellular",
+            audio: "lbl_photos".tr,
+            wiFi: "msg_wi_fi_and_cellular".tr,
           ),
           Divider(
             indent: 16.h,
           ),
           _buildRow(
-            context,
-            audio: "Audio",
-            wiFi: "Wi-Fi",
+            audio: "lbl_audio".tr,
+            wiFi: "lbl_wi_fi".tr,
           ),
           Divider(
             indent: 16.h,
           ),
           _buildRow(
-            context,
-            audio: "Videos",
-            wiFi: "Wi-Fi",
+            audio: "lbl_videos".tr,
+            wiFi: "lbl_wi_fi".tr,
           ),
           Divider(
             indent: 16.h,
           ),
           _buildRow(
-            context,
-            audio: "Documents",
-            wiFi: "Wi-Fi",
+            audio: "lbl_documents".tr,
+            wiFi: "lbl_wi_fi".tr,
           ),
           Divider(
             indent: 16.h,
@@ -175,7 +170,7 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
             ),
             decoration: AppDecoration.fillPrimary,
             child: Text(
-              "Reset Auto-Download Settings",
+              "msg_reset_auto_download".tr,
               style: CustomTextStyles.bodyLargeOnPrimary,
             ),
           ),
@@ -185,7 +180,7 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRow6(BuildContext context) {
+  Widget _buildRow6() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -202,15 +197,17 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
               bottom: 4.v,
             ),
             child: Text(
-              "Low Data Usage",
+              "lbl_low_data_usage".tr,
               style: theme.textTheme.bodyLarge,
             ),
           ),
-          CustomSwitch(
-            value: isSelectedSwitch,
-            onChange: (value) {
-              isSelectedSwitch = value;
-            },
+          Obx(
+            () => CustomSwitch(
+              value: controller.isSelectedSwitch.value,
+              onChange: (value) {
+                controller.isSelectedSwitch.value = value;
+              },
+            ),
           ),
         ],
       ),
@@ -218,22 +215,20 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows(BuildContext context) {
+  Widget _buildRows() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildRow1(
-            context,
-            storageUsage: "Network Usage",
+            storageUsage: "lbl_network_usage".tr,
           ),
           Divider(
             indent: 16.h,
           ),
           _buildRow1(
-            context,
-            storageUsage: "Storage Usage",
+            storageUsage: "lbl_storage_usage".tr,
           ),
         ],
       ),
@@ -241,15 +236,14 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );
   }
 
   /// Common widget
-  Widget _buildRow(
-    BuildContext context, {
+  Widget _buildRow({
     required String audio,
     required String wiFi,
   }) {
@@ -289,10 +283,7 @@ class WhatsappDataAndStorageUsageScreen extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildRow1(
-    BuildContext context, {
-    required String storageUsage,
-  }) {
+  Widget _buildRow1({required String storageUsage}) {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(

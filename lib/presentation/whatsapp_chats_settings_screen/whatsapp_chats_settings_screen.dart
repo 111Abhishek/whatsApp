@@ -1,3 +1,4 @@
+import 'controller/whatsapp_chats_settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
@@ -7,15 +8,13 @@ import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 import 'package:what_sapp/widgets/custom_switch.dart';
 
-class WhatsappChatsSettingsScreen extends StatelessWidget {
-  WhatsappChatsSettingsScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappChatsSettingsScreen
+    extends GetWidget<WhatsappChatsSettingsController> {
+  const WhatsappChatsSettingsScreen({Key? key})
       : super(
           key: key,
         );
-
-  bool isSelectedSwitch = false;
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +26,16 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
+              _buildNavigationBar(),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 35.v),
                 child: Column(
                   children: [
                     _buildRow(
-                      context,
-                      chatBackup: "Change Wallpaper",
+                      chatBackup: "msg_change_wallpaper".tr,
                     ),
                     SizedBox(height: 35.v),
-                    _buildRow2(context),
+                    _buildRow2(),
                     SizedBox(height: 6.v),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -48,7 +46,7 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
                           right: 34.h,
                         ),
                         child: Text(
-                          "Automatically save photos and videos you receive to your iPhone’s Camera Roll.",
+                          "msg_automatically_save".tr,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: CustomTextStyles.bodySmallGray700.copyWith(
@@ -59,11 +57,10 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 23.v),
                     _buildRow(
-                      context,
-                      chatBackup: "Chat Backup",
+                      chatBackup: "lbl_chat_backup".tr,
                     ),
                     SizedBox(height: 35.v),
-                    _buildRows(context),
+                    _buildRows(),
                     SizedBox(height: 5.v),
                   ],
                 ),
@@ -71,13 +68,13 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.v),
       decoration: AppDecoration.outlineGray,
@@ -92,11 +89,11 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
           child: Row(
             children: [
               AppbarSubtitleOne(
-                text: "Settings",
+                text: "lbl_settings".tr,
                 margin: EdgeInsets.only(top: 1.v),
               ),
               AppbarSubtitleThree(
-                text: "Chats",
+                text: "lbl_chats".tr,
                 margin: EdgeInsets.only(left: 73.h),
               ),
             ],
@@ -107,7 +104,7 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRow2(BuildContext context) {
+  Widget _buildRow2() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -121,15 +118,17 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 5.v),
             child: Text(
-              "Save to Camera Roll",
+              "msg_save_to_camera_roll".tr,
               style: theme.textTheme.bodyLarge,
             ),
           ),
-          CustomSwitch(
-            value: isSelectedSwitch,
-            onChange: (value) {
-              isSelectedSwitch = value;
-            },
+          Obx(
+            () => CustomSwitch(
+              value: controller.isSelectedSwitch.value,
+              onChange: (value) {
+                controller.isSelectedSwitch.value = value;
+              },
+            ),
           ),
         ],
       ),
@@ -137,7 +136,7 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows(BuildContext context) {
+  Widget _buildRows() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
@@ -151,7 +150,7 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
             ),
             decoration: AppDecoration.fillPrimary,
             child: Text(
-              "Archive All Chats",
+              "msg_archive_all_chats".tr,
               style: CustomTextStyles.bodyLargeLightblueA700_1,
             ),
           ),
@@ -166,7 +165,7 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
             ),
             decoration: AppDecoration.fillPrimary,
             child: Text(
-              "Clear All Chats",
+              "lbl_clear_all_chats".tr,
               style: CustomTextStyles.bodyLargeRed50001,
             ),
           ),
@@ -181,7 +180,7 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
             ),
             decoration: AppDecoration.fillPrimary,
             child: Text(
-              "Delete All Chats",
+              "msg_delete_all_chats".tr,
               style: CustomTextStyles.bodyLargeRed50001,
             ),
           ),
@@ -191,17 +190,14 @@ class WhatsappChatsSettingsScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );
   }
 
   /// Common widget
-  Widget _buildRow(
-    BuildContext context, {
-    required String chatBackup,
-  }) {
+  Widget _buildRow({required String chatBackup}) {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(

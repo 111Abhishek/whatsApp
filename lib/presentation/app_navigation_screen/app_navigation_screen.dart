@@ -1,7 +1,9 @@
+import 'controller/app_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 
-class AppNavigationScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class AppNavigationScreen extends GetWidget<AppNavigationController> {
   const AppNavigationScreen({Key? key})
       : super(
           key: key,
@@ -18,7 +20,7 @@ class AppNavigationScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildAppNavigation(context),
+              _buildAppNavigation(),
               Expanded(
                 child: SingleChildScrollView(
                   child: Container(
@@ -28,113 +30,94 @@ class AppNavigationScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Authorization",
+                          screenTitle: "WhatsApp Authorization".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappAuthorizationScreen),
+                              AppRoutes.whatsappAuthorizationScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Chats Edit",
+                          screenTitle: "WhatsApp Chats Edit".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappChatsEditScreen),
+                              AppRoutes.whatsappChatsEditScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Chat - Container",
+                          screenTitle: "WhatsApp Chat - Container".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappChatContainerScreen),
+                              AppRoutes.whatsappChatContainerScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Add Modal",
+                          screenTitle: "WhatsApp Add Modal".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappAddModalScreen),
+                              AppRoutes.whatsappAddModalScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Contact Info",
+                          screenTitle: "WhatsApp Contact Info".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappContactInfoScreen),
+                              AppRoutes.whatsappContactInfoScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Edit Contact",
+                          screenTitle: "WhatsApp Edit Contact".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappEditContactScreen),
+                              AppRoutes.whatsappEditContactScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Status",
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappStatusScreen),
+                          screenTitle: "WhatsApp Status".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.whatsappStatusScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Camera",
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappCameraScreen),
+                          screenTitle: "WhatsApp Camera".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.whatsappCameraScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Status One",
+                          screenTitle: "WhatsApp Status One".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappStatusOneScreen),
+                              AppRoutes.whatsappStatusOneScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Calls - Tab Container",
-                          onTapScreenTitle: () => onTapScreenTitle(context,
+                          screenTitle: "WhatsApp Calls - Tab Container".tr,
+                          onTapScreenTitle: () => onTapScreenTitle(
                               AppRoutes.whatsappCallsTabContainerScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Settings",
+                          screenTitle: "WhatsApp Settings".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappSettingsScreen),
+                              AppRoutes.whatsappSettingsScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Settings Modal",
+                          screenTitle: "WhatsApp Settings Modal".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappSettingsModalScreen),
+                              AppRoutes.whatsappSettingsModalScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Edit Profile",
+                          screenTitle: "WhatsApp Edit Profile".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappEditProfileScreen),
+                              AppRoutes.whatsappEditProfileScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Starred Messages",
+                          screenTitle: "WhatsApp Starred Messages".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappStarredMessagesScreen),
+                              AppRoutes.whatsappStarredMessagesScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Account",
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappAccountScreen),
+                          screenTitle: "WhatsApp Account".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.whatsappAccountScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Chats Settings",
+                          screenTitle: "WhatsApp Chats Settings".tr,
                           onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.whatsappChatsSettingsScreen),
+                              AppRoutes.whatsappChatsSettingsScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Notifications - Tab Container",
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              context,
-                              AppRoutes
-                                  .whatsappNotificationsTabContainerScreen),
+                          screenTitle:
+                              "WhatsApp Notifications - Tab Container".tr,
+                          onTapScreenTitle: () => onTapScreenTitle(AppRoutes
+                              .whatsappNotificationsTabContainerScreen),
                         ),
                         _buildScreenTitle(
-                          context,
-                          screenTitle: "WhatsApp Data and Storage Usage",
-                          onTapScreenTitle: () => onTapScreenTitle(context,
+                          screenTitle: "WhatsApp Data and Storage Usage".tr,
+                          onTapScreenTitle: () => onTapScreenTitle(
                               AppRoutes.whatsappDataAndStorageUsageScreen),
                         ),
                       ],
@@ -150,7 +133,7 @@ class AppNavigationScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildAppNavigation(BuildContext context) {
+  Widget _buildAppNavigation() {
     return Container(
       decoration: BoxDecoration(
         color: Color(0XFFFFFFFF),
@@ -163,7 +146,7 @@ class AppNavigationScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.h),
               child: Text(
-                "App Navigation",
+                "App Navigation".tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0XFF000000),
@@ -180,7 +163,8 @@ class AppNavigationScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(left: 20.h),
               child: Text(
-                "Check your app's UI from the below demo screens of your app.",
+                "Check your app's UI from the below demo screens of your app."
+                    .tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0XFF888888),
@@ -203,8 +187,7 @@ class AppNavigationScreen extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildScreenTitle(
-    BuildContext context, {
+  Widget _buildScreenTitle({
     required String screenTitle,
     Function? onTapScreenTitle,
   }) {
@@ -249,10 +232,7 @@ class AppNavigationScreen extends StatelessWidget {
   }
 
   /// Common click event
-  void onTapScreenTitle(
-    BuildContext context,
-    String routeName,
-  ) {
-    Navigator.pushNamed(context, routeName);
+  void onTapScreenTitle(String routeName) {
+    Get.toNamed(routeName);
   }
 }

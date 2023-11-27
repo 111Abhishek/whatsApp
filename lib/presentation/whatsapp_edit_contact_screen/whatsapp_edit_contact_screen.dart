@@ -1,3 +1,4 @@
+import 'controller/whatsapp_edit_contact_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_subtitle_one.dart';
@@ -6,15 +7,13 @@ import 'package:what_sapp/widgets/app_bar/appbar_subtitle_two.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_text_form_field.dart';
 
-class WhatsappEditContactScreen extends StatelessWidget {
-  WhatsappEditContactScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappEditContactScreen
+    extends GetWidget<WhatsappEditContactController> {
+  const WhatsappEditContactScreen({Key? key})
       : super(
           key: key,
         );
-
-  TextEditingController phoneNumberController = TextEditingController();
-
-  TextEditingController surnameFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +21,15 @@ class WhatsappEditContactScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: theme.colorScheme.primary,
         resizeToAvoidBottomInset: false,
-        appBar: _buildAppBar(context),
+        backgroundColor: theme.colorScheme.primary,
+        appBar: _buildAppBar(),
         body: Container(
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(vertical: 37.v),
           child: Column(
             children: [
-              _buildEightyFive(context),
+              _buildEightyFive(),
               SizedBox(height: 5.v),
               Container(
                 width: double.maxFinite,
@@ -40,7 +39,7 @@ class WhatsappEditContactScreen extends StatelessWidget {
                 ),
                 decoration: AppDecoration.fillPrimary,
                 child: Text(
-                  "Delete Contact",
+                  "lbl_delete_contact".tr,
                   style: CustomTextStyles.bodyLargeRed50001,
                 ),
               ),
@@ -52,7 +51,7 @@ class WhatsappEditContactScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+  PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       height: 41.v,
       title: Padding(
@@ -60,10 +59,10 @@ class WhatsappEditContactScreen extends StatelessWidget {
         child: Row(
           children: [
             AppbarSubtitleOne(
-              text: "Cancel",
+              text: "lbl_cancel".tr,
             ),
             AppbarSubtitleThree(
-              text: "Edit Contact",
+              text: "lbl_edit_contact".tr,
               margin: EdgeInsets.only(left: 68.h),
             ),
           ],
@@ -71,7 +70,7 @@ class WhatsappEditContactScreen extends StatelessWidget {
       ),
       actions: [
         AppbarSubtitleTwo(
-          text: "Save",
+          text: "lbl_save".tr,
           margin: EdgeInsets.fromLTRB(16.h, 10.v, 16.h, 9.v),
         ),
       ],
@@ -79,7 +78,7 @@ class WhatsappEditContactScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildEightyFive(BuildContext context) {
+  Widget _buildEightyFive() {
     return SizedBox(
       height: 250.v,
       width: double.maxFinite,
@@ -96,7 +95,7 @@ class WhatsappEditContactScreen extends StatelessWidget {
               ),
               decoration: AppDecoration.fillPrimary,
               child: Text(
-                "more fields",
+                "lbl_more_fields".tr,
                 style: CustomTextStyles.bodyLargeLightblueA700_1,
               ),
             ),
@@ -117,7 +116,7 @@ class WhatsappEditContactScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: 1.v),
                     child: Text(
-                      "mobile",
+                      "lbl_mobile".tr,
                       style: CustomTextStyles.bodyLargeLightblueA700_1,
                     ),
                   ),
@@ -139,8 +138,8 @@ class WhatsappEditContactScreen extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 50.v),
             child: CustomTextFormField(
               width: 279.h,
-              controller: phoneNumberController,
-              hintText: "+1 202 555 0181",
+              controller: controller.phoneNumberController,
+              hintText: "lbl_1_202_555_0181".tr,
               alignment: Alignment.bottomRight,
             ),
           ),
@@ -163,7 +162,7 @@ class WhatsappEditContactScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: 1.v),
                     child: Text(
-                      "New Zealand",
+                      "lbl_new_zealand".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
@@ -184,8 +183,8 @@ class WhatsappEditContactScreen extends StatelessWidget {
             padding: EdgeInsets.only(top: 50.v),
             child: CustomTextFormField(
               width: 279.h,
-              controller: surnameFieldController,
-              hintText: "Craig",
+              controller: controller.surnameFieldController,
+              hintText: "lbl_craig".tr,
               textInputAction: TextInputAction.done,
               alignment: Alignment.topRight,
             ),
@@ -200,7 +199,7 @@ class WhatsappEditContactScreen extends StatelessWidget {
               ),
               decoration: AppDecoration.fillPrimary,
               child: Text(
-                "Martha",
+                "lbl_martha".tr,
                 style: theme.textTheme.bodyLarge,
               ),
             ),
@@ -217,14 +216,14 @@ class WhatsappEditContactScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Name",
+                    "lbl_name".tr,
                     style: theme.textTheme.titleMedium,
                   ),
                   SizedBox(height: 79.v),
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Phone",
+                      "lbl_phone".tr,
                       style: theme.textTheme.titleMedium,
                     ),
                   ),

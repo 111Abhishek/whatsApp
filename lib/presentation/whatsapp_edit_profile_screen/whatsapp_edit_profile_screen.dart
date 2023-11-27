@@ -1,3 +1,4 @@
+import 'controller/whatsapp_edit_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
@@ -7,15 +8,13 @@ import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 import 'package:what_sapp/widgets/custom_text_form_field.dart';
 
-class WhatsappEditProfileScreen extends StatelessWidget {
-  WhatsappEditProfileScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappEditProfileScreen
+    extends GetWidget<WhatsappEditProfileController> {
+  const WhatsappEditProfileScreen({Key? key})
       : super(
           key: key,
         );
-
-  TextEditingController seventyFourController = TextEditingController();
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -28,25 +27,25 @@ class WhatsappEditProfileScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
+              _buildNavigationBar(),
               Column(
                 children: [
-                  _buildEditName(context),
+                  _buildEditName(),
                   SizedBox(height: 30.v),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: EdgeInsets.only(left: 16.h),
                       child: Text(
-                        "Phone number".toUpperCase(),
+                        "lbl_phone_number".tr.toUpperCase(),
                         style: CustomTextStyles.bodySmallGray700,
                       ),
                     ),
                   ),
                   SizedBox(height: 5.v),
                   CustomTextFormField(
-                    controller: seventyFourController,
-                    hintText: "+998 90 943 32 00",
+                    controller: controller.seventyFourController,
+                    hintText: "msg_998_90_943_32_00".tr,
                     textInputAction: TextInputAction.done,
                     borderDecoration: TextFormFieldStyleHelper.outlineOnPrimary,
                   ),
@@ -56,26 +55,26 @@ class WhatsappEditProfileScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(left: 16.h),
                       child: Text(
-                        "About".toUpperCase(),
+                        "lbl_about".tr.toUpperCase(),
                         style: CustomTextStyles.bodySmallGray700,
                       ),
                     ),
                   ),
                   SizedBox(height: 5.v),
-                  _buildForty(context),
+                  _buildForty(),
                   SizedBox(height: 5.v),
                 ],
               ),
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.v),
       decoration: AppDecoration.outlineGray,
@@ -90,11 +89,11 @@ class WhatsappEditProfileScreen extends StatelessWidget {
           child: Row(
             children: [
               AppbarSubtitleOne(
-                text: "Settings",
+                text: "lbl_settings".tr,
                 margin: EdgeInsets.only(top: 1.v),
               ),
               AppbarSubtitleThree(
-                text: "Edit Profile",
+                text: "lbl_edit_profile".tr,
                 margin: EdgeInsets.only(left: 53.h),
               ),
             ],
@@ -105,7 +104,7 @@ class WhatsappEditProfileScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildEditName(BuildContext context) {
+  Widget _buildEditName() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15.v),
       decoration: AppDecoration.outlineOnPrimary1,
@@ -139,7 +138,7 @@ class WhatsappEditProfileScreen extends StatelessWidget {
                       bottom: 10.v,
                     ),
                     child: Text(
-                      "Enter your name and add an optional profile picture",
+                      "msg_enter_your_name".tr,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: CustomTextStyles.bodySmallBluegray400.copyWith(
@@ -155,7 +154,7 @@ class WhatsappEditProfileScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 33.h),
             child: Text(
-              "Edit",
+              "lbl_edit".tr,
               style: CustomTextStyles.bodyMediumLightblueA700,
             ),
           ),
@@ -176,7 +175,7 @@ class WhatsappEditProfileScreen extends StatelessWidget {
                     ),
                     decoration: AppDecoration.fillPrimary,
                     child: Text(
-                      "Sabohiddin",
+                      "lbl_sabohiddin".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
@@ -204,7 +203,7 @@ class WhatsappEditProfileScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildForty(BuildContext context) {
+  Widget _buildForty() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Container(
@@ -215,7 +214,7 @@ class WhatsappEditProfileScreen extends StatelessWidget {
         ),
         decoration: AppDecoration.fillPrimary,
         child: Text(
-          "Digital goodies designer - Pixsellz",
+          "msg_digital_goodies".tr,
           style: theme.textTheme.bodyLarge,
         ),
       ),
@@ -223,7 +222,7 @@ class WhatsappEditProfileScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );

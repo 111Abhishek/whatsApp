@@ -1,3 +1,5 @@
+import 'controller/whatsapp_chat_actions_controller.dart';
+import 'models/whatsapp_chat_actions_model.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_subtitle_one.dart';
@@ -6,12 +8,14 @@ import 'package:what_sapp/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_elevated_button.dart';
 
-// ignore_for_file: must_be_immutable
 class WhatsappChatActionsPage extends StatelessWidget {
-  const WhatsappChatActionsPage({Key? key})
+  WhatsappChatActionsPage({Key? key})
       : super(
           key: key,
         );
+
+  WhatsappChatActionsController controller =
+      Get.put(WhatsappChatActionsController(WhatsappChatActionsModel().obs));
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +57,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
                               ),
                               SizedBox(height: 12.v),
                               Text(
-                                "More",
+                                "lbl_more".tr,
                                 style: CustomTextStyles.bodyMediumPrimary,
                               ),
                             ],
@@ -76,7 +80,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                "Archive",
+                                "lbl_archive".tr,
                                 style: CustomTextStyles.bodyMediumPrimary,
                               ),
                             ],
@@ -92,10 +96,9 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     bottom: 384.v,
                   ),
                   child: _buildOval(
-                    context,
-                    andrewParker: "Maximillian Jacobson",
-                    oneHundredElevenThousandSixHun: "10/30/19",
-                    whatKindOfStrateg: "Bro, I have a good idea! ",
+                    andrewParker: "msg_maximillian_jacobson".tr,
+                    oneHundredElevenThousandSixHun: "lbl_10_30_19".tr,
+                    whatKindOfStrateg: "msg_bro_i_have_a_good".tr,
                   ),
                 ),
                 Padding(
@@ -104,10 +107,9 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     bottom: 532.v,
                   ),
                   child: _buildOval(
-                    context,
-                    andrewParker: "Andrew Parker",
-                    oneHundredElevenThousandSixHun: "11/16/19",
-                    whatKindOfStrateg: "What kind of strategy is better?",
+                    andrewParker: "lbl_andrew_parker".tr,
+                    oneHundredElevenThousandSixHun: "lbl_11_16_19".tr,
+                    whatKindOfStrateg: "msg_what_kind_of_strategy".tr,
                   ),
                 ),
                 Padding(
@@ -116,15 +118,14 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     bottom: 88.v,
                   ),
                   child: _buildOval(
-                    context,
-                    andrewParker: "Kieron Dotson",
-                    oneHundredElevenThousandSixHun: "7/29/19",
-                    whatKindOfStrateg: "Ok, have a good trip!",
+                    andrewParker: "lbl_kieron_dotson".tr,
+                    oneHundredElevenThousandSixHun: "lbl_7_29_19".tr,
+                    whatKindOfStrateg: "msg_ok_have_a_good".tr,
                   ),
                 ),
-                _buildOval4(context),
-                _buildOval5(context),
-                _buildOval6(context),
+                _buildOval4(),
+                _buildOval5(),
+                _buildOval6(),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Container(
@@ -138,13 +139,13 @@ class WhatsappChatActionsPage extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              "Martin Randolph",
+                              "lbl_martin_randolph".tr,
                               style: theme.textTheme.titleMedium,
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 81.h),
                               child: Text(
-                                "11/19/19",
+                                "lbl_11_19_19".tr,
                                 style: theme.textTheme.bodyMedium,
                               ),
                             ),
@@ -157,7 +158,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 9.v),
                               child: Text(
-                                "Yes, 2pm is awesome",
+                                "msg_yes_2pm_is_awesome".tr,
                                 style: theme.textTheme.bodyMedium,
                               ),
                             ),
@@ -177,17 +178,16 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                _buildOval7(context),
+                _buildOval7(),
                 Padding(
                   padding: EdgeInsets.only(
                     top: 680.v,
                     bottom: 14.v,
                   ),
                   child: _buildOval(
-                    context,
-                    andrewParker: "Joshua Lawrence",
-                    oneHundredElevenThousandSixHun: "10/20/19",
-                    whatKindOfStrateg: "Do you like WhatsApp UI?",
+                    andrewParker: "lbl_joshua_lawrence".tr,
+                    oneHundredElevenThousandSixHun: "lbl_10_20_19".tr,
+                    whatKindOfStrateg: "msg_do_you_like_whatsapp".tr,
                   ),
                 ),
                 Align(
@@ -277,8 +277,8 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                _buildActions(context),
-                _buildAppBar(context),
+                _buildActions(),
+                _buildAppBar(),
                 Align(
                   alignment: Alignment.center,
                   child: Container(
@@ -292,10 +292,10 @@ class WhatsappChatActionsPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Spacer(),
-                        _buildActions1(context),
+                        _buildActions1(),
                         SizedBox(height: 8.v),
                         CustomElevatedButton(
-                          text: "Cancel",
+                          text: "lbl_cancel".tr,
                         ),
                       ],
                     ),
@@ -310,7 +310,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildOval4(BuildContext context) {
+  Widget _buildOval4() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -348,9 +348,8 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 17.h),
                       child: _buildTabithaPotter(
-                        context,
-                        tabithaPotter: "Tabitha Potter",
-                        eightyTwoThousandFiveHundredNi: "8/25/19",
+                        tabithaPotter: "lbl_tabitha_potter".tr,
+                        eightyTwoThousandFiveHundredNi: "lbl_8_25_19".tr,
                       ),
                     ),
                     Row(
@@ -360,7 +359,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
                           child: SizedBox(
                             width: 259.h,
                             child: Text(
-                              "Actually I wanted to check with you about your online business plan on our…",
+                              "msg_actually_i_wanted".tr,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: theme.textTheme.bodyMedium!.copyWith(
@@ -392,7 +391,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildOval5(BuildContext context) {
+  Widget _buildOval5() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -430,9 +429,8 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 17.h),
                       child: _buildTabithaPotter(
-                        context,
-                        tabithaPotter: "Maisy Humphrey",
-                        eightyTwoThousandFiveHundredNi: "8/20/19",
+                        tabithaPotter: "lbl_maisy_humphrey".tr,
+                        eightyTwoThousandFiveHundredNi: "lbl_8_20_19".tr,
                       ),
                     ),
                     SizedBox(height: 1.v),
@@ -460,7 +458,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
                                     Padding(
                                       padding: EdgeInsets.only(left: 2.h),
                                       child: Text(
-                                        "Welcome, to make design process",
+                                        "msg_welcome_to_make".tr,
                                         style: theme.textTheme.bodyMedium,
                                       ),
                                     ),
@@ -471,7 +469,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
                               SizedBox(
                                 width: 194.h,
                                 child: Text(
-                                  "     \nprocess faster, look at Pixsellz",
+                                  "msg_process_faster".tr,
                                   maxLines: null,
                                   overflow: TextOverflow.ellipsis,
                                   style: theme.textTheme.bodyMedium!.copyWith(
@@ -504,7 +502,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildOval6(BuildContext context) {
+  Widget _buildOval6() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -543,9 +541,8 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 17.h),
                       child: _buildTabithaPotter(
-                        context,
-                        tabithaPotter: "Martha Craig",
-                        eightyTwoThousandFiveHundredNi: "10/28/19",
+                        tabithaPotter: "lbl_martha_craig".tr,
+                        eightyTwoThousandFiveHundredNi: "lbl_10_28_19".tr,
                       ),
                     ),
                     SizedBox(height: 1.v),
@@ -567,7 +564,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
                             top: 8.v,
                           ),
                           child: Text(
-                            "Photo",
+                            "lbl_photo".tr,
                             style: theme.textTheme.bodyMedium,
                           ),
                         ),
@@ -591,7 +588,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildOval7(BuildContext context) {
+  Widget _buildOval7() {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
@@ -630,9 +627,8 @@ class WhatsappChatActionsPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 17.h),
                       child: _buildTabithaPotter(
-                        context,
-                        tabithaPotter: "Karen Castillo",
-                        eightyTwoThousandFiveHundredNi: "11/15/19",
+                        tabithaPotter: "lbl_karen_castillo".tr,
+                        eightyTwoThousandFiveHundredNi: "lbl_11_15_19".tr,
                       ),
                     ),
                     SizedBox(height: 2.v),
@@ -651,7 +647,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
                             top: 8.v,
                           ),
                           child: Text(
-                            "0:14",
+                            "lbl_0_14".tr,
                             style: theme.textTheme.bodyMedium,
                           ),
                         ),
@@ -675,7 +671,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildActions(BuildContext context) {
+  Widget _buildActions() {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
@@ -695,14 +691,14 @@ class WhatsappChatActionsPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 1.v),
               child: Text(
-                "Broadcast Lists",
+                "lbl_broadcast_lists".tr,
                 style: CustomTextStyles.bodyLargeBluegray400,
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 1.v),
               child: Text(
-                "New Group",
+                "lbl_new_group".tr,
                 style: CustomTextStyles.bodyLargeBluegray400,
               ),
             ),
@@ -713,7 +709,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+  PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       height: 44.v,
       title: Padding(
@@ -721,10 +717,10 @@ class WhatsappChatActionsPage extends StatelessWidget {
         child: Row(
           children: [
             AppbarSubtitleOne(
-              text: "Edit",
+              text: "lbl_edit".tr,
             ),
             AppbarSubtitleThree(
-              text: "Chats",
+              text: "lbl_chats".tr,
               margin: EdgeInsets.only(left: 117.h),
             ),
           ],
@@ -741,7 +737,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildActions1(BuildContext context) {
+  Widget _buildActions1() {
     return Container(
       decoration: AppDecoration.fillGray200.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder15,
@@ -752,7 +748,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
         children: [
           SizedBox(height: 16.v),
           Text(
-            "Mute",
+            "lbl_mute".tr,
             style: theme.textTheme.titleLarge,
           ),
           SizedBox(height: 16.v),
@@ -761,7 +757,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
           ),
           SizedBox(height: 15.v),
           Text(
-            "Contact Info",
+            "lbl_contact_info".tr,
             style: theme.textTheme.titleLarge,
           ),
           SizedBox(height: 16.v),
@@ -770,7 +766,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
           ),
           SizedBox(height: 17.v),
           Text(
-            "Export Chat",
+            "lbl_export_chat".tr,
             style: theme.textTheme.titleLarge,
           ),
           SizedBox(height: 14.v),
@@ -779,7 +775,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
           ),
           SizedBox(height: 16.v),
           Text(
-            "Clear Chat",
+            "lbl_clear_chat".tr,
             style: theme.textTheme.titleLarge,
           ),
           SizedBox(height: 15.v),
@@ -788,7 +784,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
           ),
           SizedBox(height: 16.v),
           Text(
-            "Delete Chat",
+            "lbl_delete_chat".tr,
             style: CustomTextStyles.titleLargeRed50001,
           ),
           SizedBox(height: 15.v),
@@ -801,8 +797,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildOval(
-    BuildContext context, {
+  Widget _buildOval({
     required String andrewParker,
     required String oneHundredElevenThousandSixHun,
     required String whatKindOfStrateg,
@@ -903,8 +898,7 @@ class WhatsappChatActionsPage extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildTabithaPotter(
-    BuildContext context, {
+  Widget _buildTabithaPotter({
     required String tabithaPotter,
     required String eightyTwoThousandFiveHundredNi,
   }) {

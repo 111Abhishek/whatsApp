@@ -1,3 +1,4 @@
+import 'controller/whatsapp_camera_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
@@ -5,7 +6,8 @@ import 'package:what_sapp/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_elevated_button.dart';
 
-class WhatsappCameraScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class WhatsappCameraScreen extends GetWidget<WhatsappCameraController> {
   const WhatsappCameraScreen({Key? key})
       : super(
           key: key,
@@ -18,7 +20,7 @@ class WhatsappCameraScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: appTheme.black900,
-        appBar: _buildAppBar(context),
+        appBar: _buildAppBar(),
         body: SizedBox(
           height: 666.v,
           width: double.maxFinite,
@@ -31,17 +33,17 @@ class WhatsappCameraScreen extends StatelessWidget {
                 width: 375.h,
                 alignment: Alignment.center,
               ),
-              _buildGalleryIcon(context),
+              _buildGalleryIcon(),
             ],
           ),
         ),
-        bottomNavigationBar: _buildHoldForVideotapForPhoto(context),
+        bottomNavigationBar: _buildHoldForVideotapForPhoto(),
       ),
     );
   }
 
   /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+  PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       height: 73.v,
       leadingWidth: 37.h,
@@ -63,7 +65,7 @@ class WhatsappCameraScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildGalleryIcon(BuildContext context) {
+  Widget _buildGalleryIcon() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
@@ -123,10 +125,10 @@ class WhatsappCameraScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildHoldForVideotapForPhoto(BuildContext context) {
+  Widget _buildHoldForVideotapForPhoto() {
     return CustomElevatedButton(
       height: 73.v,
-      text: "Hold for video, tap for photo",
+      text: "msg_hold_for_video".tr,
       buttonStyle: CustomButtonStyles.fillBlack,
       buttonTextStyle: CustomTextStyles.labelLargePrimaryMedium,
     );

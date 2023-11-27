@@ -1,15 +1,15 @@
+import 'controller/whatsapp_settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 import 'package:what_sapp/widgets/custom_elevated_button.dart';
 
-class WhatsappSettingsScreen extends StatelessWidget {
-  WhatsappSettingsScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappSettingsScreen extends GetWidget<WhatsappSettingsController> {
+  const WhatsappSettingsScreen({Key? key})
       : super(
           key: key,
         );
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -23,33 +23,33 @@ class WhatsappSettingsScreen extends StatelessWidget {
             children: [
               CustomElevatedButton(
                 height: 44.v,
-                text: "Settings",
+                text: "lbl_settings".tr,
                 buttonStyle: CustomButtonStyles.outlineGray,
                 buttonTextStyle: CustomTextStyles.titleMedium17,
               ),
-              _buildOval(context),
+              _buildOval(),
               SizedBox(height: 35.v),
-              _buildRows(context),
+              _buildRows(),
               SizedBox(height: 35.v),
-              _buildRows1(context),
+              _buildRows1(),
               SizedBox(height: 35.v),
-              _buildRows2(context),
+              _buildRows2(),
               SizedBox(height: 37.v),
               Text(
-                "WhatsApp from Facebook",
+                "msg_whatsapp_from_facebook".tr,
                 style: CustomTextStyles.bodySmallBluegray40012,
               ),
               SizedBox(height: 5.v),
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildOval(BuildContext context) {
+  Widget _buildOval() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -80,12 +80,12 @@ class WhatsappSettingsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Sabohiddin",
+                  "lbl_sabohiddin".tr,
                   style: CustomTextStyles.titleLargeSFProTextBlack900,
                 ),
                 SizedBox(height: 1.v),
                 Text(
-                  "Digital goodies designer - Pixsellz",
+                  "msg_digital_goodies".tr,
                   style: CustomTextStyles.bodyLargeOnPrimary_1,
                 ),
               ],
@@ -108,7 +108,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows(BuildContext context) {
+  Widget _buildRows() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
@@ -150,7 +150,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
                     bottom: 4.v,
                   ),
                   child: Text(
-                    "Starred Messages",
+                    "msg_starred_messages".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
@@ -210,7 +210,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
                     bottom: 4.v,
                   ),
                   child: Text(
-                    "WhatsApp Web/Desktop",
+                    "msg_whatsapp_web_desktop".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
@@ -234,7 +234,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows1(BuildContext context) {
+  Widget _buildRows1() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
@@ -275,7 +275,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
                     bottom: 5.v,
                   ),
                   child: Text(
-                    "Account",
+                    "lbl_account".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
@@ -331,7 +331,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
                     bottom: 5.v,
                   ),
                   child: Text(
-                    "Chats",
+                    "lbl_chats".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
@@ -387,7 +387,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
                     bottom: 5.v,
                   ),
                   child: Text(
-                    "Notifications",
+                    "lbl_notifications".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
@@ -412,9 +412,8 @@ class WhatsappSettingsScreen extends StatelessWidget {
             ),
           ),
           _buildRow(
-            context,
             shape: ImageConstant.imgShapePrimary12x14,
-            tellAFriend: "Data and Storage Usage",
+            tellAFriend: "msg_data_and_storage".tr,
           ),
         ],
       ),
@@ -422,7 +421,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows2(BuildContext context) {
+  Widget _buildRows2() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
@@ -464,7 +463,7 @@ class WhatsappSettingsScreen extends StatelessWidget {
                     bottom: 4.v,
                   ),
                   child: Text(
-                    "Help",
+                    "lbl_help".tr,
                     style: theme.textTheme.bodyLarge,
                   ),
                 ),
@@ -489,9 +488,8 @@ class WhatsappSettingsScreen extends StatelessWidget {
             ),
           ),
           _buildRow(
-            context,
             shape: ImageConstant.imgShapePrimary13x14,
-            tellAFriend: "Tell a Friend",
+            tellAFriend: "lbl_tell_a_friend".tr,
           ),
         ],
       ),
@@ -499,15 +497,14 @@ class WhatsappSettingsScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );
   }
 
   /// Common widget
-  Widget _buildRow(
-    BuildContext context, {
+  Widget _buildRow({
     required String shape,
     required String tellAFriend,
   }) {

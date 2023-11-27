@@ -1,3 +1,4 @@
+import 'controller/whatsapp_status_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_subtitle_one.dart';
@@ -7,13 +8,12 @@ import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 import 'package:what_sapp/widgets/custom_elevated_button.dart';
 import 'package:what_sapp/widgets/custom_icon_button.dart';
 
-class WhatsappStatusScreen extends StatelessWidget {
-  WhatsappStatusScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappStatusScreen extends GetWidget<WhatsappStatusController> {
+  const WhatsappStatusScreen({Key? key})
       : super(
           key: key,
         );
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,16 @@ class WhatsappStatusScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
+              _buildNavigationBar(),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 35.v),
                 child: Column(
                   children: [
-                    _buildOvalTwo(context),
+                    _buildOvalTwo(),
                     SizedBox(height: 35.v),
                     CustomElevatedButton(
                       height: 43.v,
-                      text: "No recent updates to show right now.",
+                      text: "msg_no_recent_updates".tr,
                       buttonStyle: CustomButtonStyles.outlineOnPrimary,
                       buttonTextStyle: theme.textTheme.bodyMedium!,
                     ),
@@ -45,13 +45,13 @@ class WhatsappStatusScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.v),
       decoration: AppDecoration.outlineGray,
@@ -62,11 +62,11 @@ class WhatsappStatusScreen extends StatelessWidget {
           child: Row(
             children: [
               AppbarSubtitleOne(
-                text: "Privacy",
+                text: "lbl_privacy".tr,
                 margin: EdgeInsets.only(top: 1.v),
               ),
               AppbarSubtitleThree(
-                text: "Status",
+                text: "lbl_status".tr,
                 margin: EdgeInsets.only(
                   left: 88.h,
                   bottom: 1.v,
@@ -80,7 +80,7 @@ class WhatsappStatusScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildOvalTwo(BuildContext context) {
+  Widget _buildOvalTwo() {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(
@@ -129,12 +129,12 @@ class WhatsappStatusScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "My Status",
+                  "lbl_my_status".tr,
                   style: theme.textTheme.titleMedium,
                 ),
                 SizedBox(height: 3.v),
                 Text(
-                  "Add to my status",
+                  "msg_add_to_my_status".tr,
                   style: theme.textTheme.bodyMedium,
                 ),
               ],
@@ -171,7 +171,7 @@ class WhatsappStatusScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );

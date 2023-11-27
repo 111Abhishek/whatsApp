@@ -1,16 +1,17 @@
+import 'controller/whatsapp_settings_modal_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 import 'package:what_sapp/widgets/custom_elevated_button.dart';
 import 'package:what_sapp/widgets/custom_icon_button.dart';
 
-class WhatsappSettingsModalScreen extends StatelessWidget {
-  WhatsappSettingsModalScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappSettingsModalScreen
+    extends GetWidget<WhatsappSettingsModalController> {
+  const WhatsappSettingsModalScreen({Key? key})
       : super(
           key: key,
         );
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +30,19 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 31.v),
                   child: Text(
-                    "WhatsApp from Facebook",
+                    "msg_whatsapp_from_facebook".tr,
                     style: CustomTextStyles.bodySmallBluegray40012,
                   ),
                 ),
               ),
-              _buildOval(context),
-              _buildRows(context),
-              _buildRows1(context),
-              _buildRows2(context),
+              _buildOval(),
+              _buildRows(),
+              _buildRows1(),
+              _buildRows2(),
               CustomElevatedButton(
                 height: 44.v,
                 width: double.maxFinite,
-                text: "Settings",
+                text: "lbl_settings".tr,
                 buttonStyle: CustomButtonStyles.outlineGray,
                 buttonTextStyle: CustomTextStyles.titleMedium17,
                 alignment: Alignment.topCenter,
@@ -59,10 +60,10 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Spacer(),
-                      _buildActions(context),
+                      _buildActions(),
                       SizedBox(height: 8.v),
                       CustomElevatedButton(
-                        text: "Cancel",
+                        text: "lbl_cancel".tr,
                       ),
                     ],
                   ),
@@ -71,13 +72,13 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildOval(BuildContext context) {
+  Widget _buildOval() {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
@@ -114,12 +115,12 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Sabohiddin",
+                    "lbl_sabohiddin".tr,
                     style: CustomTextStyles.titleLargeSFProTextBlack900,
                   ),
                   SizedBox(height: 1.v),
                   Text(
-                    "Digital goodies designer - Pixsellz",
+                    "msg_digital_goodies".tr,
                     style: CustomTextStyles.bodyLargeOnPrimary_1,
                   ),
                 ],
@@ -143,7 +144,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows(BuildContext context) {
+  Widget _buildRows() {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
@@ -188,7 +189,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                       bottom: 4.v,
                     ),
                     child: Text(
-                      "Starred Messages",
+                      "msg_starred_messages".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
@@ -248,7 +249,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                       bottom: 4.v,
                     ),
                     child: Text(
-                      "WhatsApp Web/Desktop",
+                      "msg_whatsapp_web_desktop".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
@@ -273,7 +274,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows1(BuildContext context) {
+  Widget _buildRows1() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -283,8 +284,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _buildRow(
-              context,
-              tellAFriend: "Help",
+              tellAFriend: "lbl_help".tr,
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -293,8 +293,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
               ),
             ),
             _buildRow(
-              context,
-              tellAFriend: "Tell a Friend",
+              tellAFriend: "lbl_tell_a_friend".tr,
             ),
           ],
         ),
@@ -303,7 +302,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows2(BuildContext context) {
+  Widget _buildRows2() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -347,7 +346,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                       bottom: 5.v,
                     ),
                     child: Text(
-                      "Account",
+                      "lbl_account".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
@@ -403,7 +402,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                       bottom: 5.v,
                     ),
                     child: Text(
-                      "Chats",
+                      "lbl_chats".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
@@ -459,7 +458,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                       bottom: 5.v,
                     ),
                     child: Text(
-                      "Notifications",
+                      "lbl_notifications".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
@@ -516,7 +515,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
                       bottom: 4.v,
                     ),
                     child: Text(
-                      "Data and Storage Usage",
+                      "msg_data_and_storage".tr,
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
@@ -541,7 +540,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildActions(BuildContext context) {
+  Widget _buildActions() {
     return Container(
       decoration: AppDecoration.fillGray200.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder15,
@@ -554,7 +553,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
           ),
           SizedBox(height: 16.v),
           Text(
-            "Mail",
+            "lbl_mail".tr,
             style: theme.textTheme.titleLarge,
           ),
           SizedBox(height: 15.v),
@@ -563,7 +562,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
           ),
           SizedBox(height: 18.v),
           Text(
-            "Message",
+            "lbl_message".tr,
             style: theme.textTheme.titleLarge,
           ),
           SizedBox(height: 13.v),
@@ -572,7 +571,7 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
           ),
           SizedBox(height: 16.v),
           Text(
-            "More",
+            "lbl_more".tr,
             style: theme.textTheme.titleLarge,
           ),
           SizedBox(height: 15.v),
@@ -585,17 +584,14 @@ class WhatsappSettingsModalScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );
   }
 
   /// Common widget
-  Widget _buildRow(
-    BuildContext context, {
-    required String tellAFriend,
-  }) {
+  Widget _buildRow({required String tellAFriend}) {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(

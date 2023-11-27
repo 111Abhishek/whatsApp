@@ -1,10 +1,12 @@
+import 'controller/whatsapp_status_one_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 
-class WhatsappStatusOneScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class WhatsappStatusOneScreen extends GetWidget<WhatsappStatusOneController> {
   const WhatsappStatusOneScreen({Key? key})
       : super(
           key: key,
@@ -17,7 +19,7 @@ class WhatsappStatusOneScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: appTheme.redA100,
-        appBar: _buildAppBar(context),
+        appBar: _buildAppBar(),
         body: Container(
           height: 711.v,
           width: double.maxFinite,
@@ -30,7 +32,7 @@ class WhatsappStatusOneScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(top: 3.v),
                   child: Text(
-                    "Type a status",
+                    "lbl_type_a_status".tr,
                     style: CustomTextStyles
                         .displaySmallHelveticaNeueOnPrimaryContainer,
                   ),
@@ -55,7 +57,7 @@ class WhatsappStatusOneScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+  PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       height: 56.v,
       leadingWidth: 38.h,

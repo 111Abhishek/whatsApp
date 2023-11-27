@@ -1,22 +1,19 @@
 import '../whatsapp_calls_page/widgets/whatsappcalls_item_widget.dart';
+import 'controller/whatsapp_calls_controller.dart';
+import 'models/whatsapp_calls_model.dart';
+import 'models/whatsappcalls_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 
-// ignore_for_file: must_be_immutable
-class WhatsappCallsPage extends StatefulWidget {
-  const WhatsappCallsPage({Key? key})
+class WhatsappCallsPage extends StatelessWidget {
+  WhatsappCallsPage({Key? key})
       : super(
           key: key,
         );
 
-  @override
-  WhatsappCallsPageState createState() => WhatsappCallsPageState();
-}
+  WhatsappCallsController controller =
+      Get.put(WhatsappCallsController(WhatsappCallsModel().obs));
 
-class WhatsappCallsPageState extends State<WhatsappCallsPage>
-    with AutomaticKeepAliveClientMixin<WhatsappCallsPage> {
-  @override
-  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -36,7 +33,7 @@ class WhatsappCallsPageState extends State<WhatsappCallsPage>
                 margin: EdgeInsets.only(right: 16.h),
               ),
               SizedBox(height: 10.v),
-              _buildWhatsAppCalls(context),
+              _buildWhatsAppCalls(),
             ],
           ),
         ),
@@ -45,30 +42,37 @@ class WhatsappCallsPageState extends State<WhatsappCallsPage>
   }
 
   /// Section Widget
-  Widget _buildWhatsAppCalls(BuildContext context) {
-    return ListView.separated(
-      physics: BouncingScrollPhysics(),
-      shrinkWrap: true,
-      separatorBuilder: (
-        context,
-        index,
-      ) {
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 0.5.v),
-          child: SizedBox(
-            width: 307.h,
-            child: Divider(
-              height: 1.v,
-              thickness: 1.v,
-              color: theme.colorScheme.onPrimary.withOpacity(0.29),
+  Widget _buildWhatsAppCalls() {
+    return Obx(
+      () => ListView.separated(
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        separatorBuilder: (
+          context,
+          index,
+        ) {
+          return Padding(
+            padding: EdgeInsets.symmetric(vertical: 0.5.v),
+            child: SizedBox(
+              width: 307.h,
+              child: Divider(
+                height: 1.v,
+                thickness: 1.v,
+                color: theme.colorScheme.onPrimary.withOpacity(0.29),
+              ),
             ),
-          ),
-        );
-      },
-      itemCount: 12,
-      itemBuilder: (context, index) {
-        return WhatsappcallsItemWidget();
-      },
+          );
+        },
+        itemCount: controller
+            .whatsappCallsModelObj.value.whatsappcallsItemList.value.length,
+        itemBuilder: (context, index) {
+          WhatsappcallsItemModel model = controller
+              .whatsappCallsModelObj.value.whatsappcallsItemList.value[index];
+          return WhatsappcallsItemWidget(
+            model,
+          );
+        },
+      ),
     );
   }
 }

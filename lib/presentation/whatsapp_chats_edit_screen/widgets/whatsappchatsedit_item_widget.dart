@@ -1,12 +1,20 @@
+import '../controller/whatsapp_chats_edit_controller.dart';
+import '../models/whatsappchatsedit_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 
 // ignore: must_be_immutable
 class WhatsappchatseditItemWidget extends StatelessWidget {
-  const WhatsappchatseditItemWidget({Key? key})
-      : super(
+  WhatsappchatseditItemWidget(
+    this.whatsappchatseditItemModelObj, {
+    Key? key,
+  }) : super(
           key: key,
         );
+
+  WhatsappchatseditItemModel whatsappchatseditItemModelObj;
+
+  var controller = Get.find<WhatsappChatsEditController>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +36,16 @@ class WhatsappchatseditItemWidget extends StatelessWidget {
                 bottom: 16.v,
               ),
             ),
-            CustomImageView(
-              imagePath: ImageConstant.imgOval7,
-              height: 52.adaptSize,
-              width: 52.adaptSize,
-              radius: BorderRadius.circular(
-                26.h,
+            Obx(
+              () => CustomImageView(
+                imagePath: whatsappchatseditItemModelObj.martinRandolph!.value,
+                height: 52.adaptSize,
+                width: 52.adaptSize,
+                radius: BorderRadius.circular(
+                  26.h,
+                ),
+                margin: EdgeInsets.symmetric(vertical: 1.v),
               ),
-              margin: EdgeInsets.symmetric(vertical: 1.v),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 7.v),
@@ -47,13 +57,19 @@ class WhatsappchatseditItemWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Martin Randolph",
-                          style: theme.textTheme.titleMedium,
+                        Obx(
+                          () => Text(
+                            whatsappchatseditItemModelObj
+                                .martinRandolph1!.value,
+                            style: theme.textTheme.titleMedium,
+                          ),
                         ),
-                        Text(
-                          "11/19/19",
-                          style: theme.textTheme.bodyMedium,
+                        Obx(
+                          () => Text(
+                            whatsappchatseditItemModelObj
+                                .oneHundredElevenThousandNineHu!.value,
+                            style: theme.textTheme.bodyMedium,
+                          ),
                         ),
                       ],
                     ),
@@ -62,20 +78,25 @@ class WhatsappchatseditItemWidget extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomImageView(
-                        imagePath: ImageConstant.imgRead,
-                        height: 11.v,
-                        width: 17.h,
-                        margin: EdgeInsets.only(
-                          top: 2.v,
-                          bottom: 3.v,
+                      Obx(
+                        () => CustomImageView(
+                          imagePath: whatsappchatseditItemModelObj
+                              .yespmisawesome!.value,
+                          height: 11.v,
+                          width: 17.h,
+                          margin: EdgeInsets.only(
+                            top: 2.v,
+                            bottom: 3.v,
+                          ),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 2.h),
-                        child: Text(
-                          "Yes, 2pm is awesome",
-                          style: theme.textTheme.bodyMedium,
+                        child: Obx(
+                          () => Text(
+                            whatsappchatseditItemModelObj.time!.value,
+                            style: theme.textTheme.bodyMedium,
+                          ),
                         ),
                       ),
                     ],

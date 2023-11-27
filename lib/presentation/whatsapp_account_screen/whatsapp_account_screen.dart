@@ -1,3 +1,4 @@
+import 'controller/whatsapp_account_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:what_sapp/core/app_export.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_leading_image.dart';
@@ -6,13 +7,12 @@ import 'package:what_sapp/widgets/app_bar/appbar_subtitle_three.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 
-class WhatsappAccountScreen extends StatelessWidget {
-  WhatsappAccountScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappAccountScreen extends GetWidget<WhatsappAccountController> {
+  const WhatsappAccountScreen({Key? key})
       : super(
           key: key,
         );
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +24,14 @@ class WhatsappAccountScreen extends StatelessWidget {
           width: double.maxFinite,
           child: Column(
             children: [
-              _buildNavigationBar(context),
+              _buildNavigationBar(),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 35.v),
                 child: Column(
                   children: [
-                    _buildRows(context),
+                    _buildRows(),
                     SizedBox(height: 35.v),
-                    _buildRows1(context),
+                    _buildRows1(),
                     SizedBox(height: 5.v),
                   ],
                 ),
@@ -39,13 +39,13 @@ class WhatsappAccountScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  Widget _buildNavigationBar(BuildContext context) {
+  Widget _buildNavigationBar() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.v),
       decoration: AppDecoration.outlineGray,
@@ -60,11 +60,11 @@ class WhatsappAccountScreen extends StatelessWidget {
           child: Row(
             children: [
               AppbarSubtitleOne(
-                text: "Settings",
+                text: "lbl_settings".tr,
                 margin: EdgeInsets.only(top: 1.v),
               ),
               AppbarSubtitleThree(
-                text: "Account",
+                text: "lbl_account".tr,
                 margin: EdgeInsets.only(left: 64.h),
               ),
             ],
@@ -75,36 +75,32 @@ class WhatsappAccountScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows(BuildContext context) {
+  Widget _buildRows() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildRow(
-            context,
-            security: "Privacy",
+            security: "lbl_privacy".tr,
           ),
           Divider(
             indent: 16.h,
           ),
           _buildRow(
-            context,
-            security: "Security",
+            security: "lbl_security".tr,
           ),
           Divider(
             indent: 16.h,
           ),
           _buildRow(
-            context,
-            security: "Two-Step Verification",
+            security: "msg_two_step_verification".tr,
           ),
           Divider(
             indent: 16.h,
           ),
           _buildRow(
-            context,
-            security: "Change Number",
+            security: "lbl_change_number".tr,
           ),
         ],
       ),
@@ -112,22 +108,20 @@ class WhatsappAccountScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildRows1(BuildContext context) {
+  Widget _buildRows1() {
     return Container(
       decoration: AppDecoration.outlineOnPrimary,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildRow(
-            context,
-            security: "Request Account Info",
+            security: "msg_request_account".tr,
           ),
           Divider(
             indent: 16.h,
           ),
           _buildRow(
-            context,
-            security: "Delete My Account",
+            security: "msg_delete_my_account".tr,
           ),
         ],
       ),
@@ -135,17 +129,14 @@ class WhatsappAccountScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );
   }
 
   /// Common widget
-  Widget _buildRow(
-    BuildContext context, {
-    required String security,
-  }) {
+  Widget _buildRow({required String security}) {
     return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(

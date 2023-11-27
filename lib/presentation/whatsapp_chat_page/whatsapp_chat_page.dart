@@ -1,3 +1,5 @@
+import 'controller/whatsapp_chat_controller.dart';
+import 'models/whatsapp_chat_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:what_sapp/core/app_export.dart';
@@ -8,12 +10,14 @@ import 'package:what_sapp/widgets/app_bar/appbar_title_circleimage.dart';
 import 'package:what_sapp/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 
-// ignore_for_file: must_be_immutable
 class WhatsappChatPage extends StatelessWidget {
-  const WhatsappChatPage({Key? key})
+  WhatsappChatPage({Key? key})
       : super(
           key: key,
         );
+
+  WhatsappChatController controller =
+      Get.put(WhatsappChatController(WhatsappChatModel().obs));
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class WhatsappChatPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _buildAppBar(context),
+                    _buildAppBar(),
                     SizedBox(
                       height: 668.v,
                       width: 360.h,
@@ -93,7 +97,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 bottom: 2.v),
                                                         child: Text(
-                                                          "Good bye!",
+                                                          "lbl_good_bye".tr,
                                                           style: theme.textTheme
                                                               .bodyLarge,
                                                         ),
@@ -105,7 +109,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                           top: 8.v,
                                                         ),
                                                         child: Text(
-                                                          "17:47",
+                                                          "lbl_17_47".tr,
                                                           style: theme.textTheme
                                                               .bodySmall,
                                                         ),
@@ -147,7 +151,7 @@ class WhatsappChatPage extends StatelessWidget {
                                           BorderRadiusStyle.roundedBorder8,
                                     ),
                                     child: Text(
-                                      "Fri, Jul 26",
+                                      "lbl_fri_jul_26".tr,
                                       style: theme.textTheme.labelLarge,
                                     ),
                                   ),
@@ -200,7 +204,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           bottom: 2.v),
                                                       child: Text(
-                                                        "Good morning!",
+                                                        "lbl_good_morning".tr,
                                                         style: theme.textTheme
                                                             .bodyLarge,
                                                       ),
@@ -211,7 +215,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                         top: 8.v,
                                                       ),
                                                       child: Text(
-                                                        "10:10",
+                                                        "lbl_10_10".tr,
                                                         style: theme.textTheme
                                                             .bodySmall,
                                                       ),
@@ -285,7 +289,8 @@ class WhatsappChatPage extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           bottom: 2.v),
                                                       child: Text(
-                                                        "Japan looks amazing!",
+                                                        "msg_japan_looks_amazing"
+                                                            .tr,
                                                         style: theme.textTheme
                                                             .bodyLarge,
                                                       ),
@@ -296,7 +301,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                         top: 8.v,
                                                       ),
                                                       child: Text(
-                                                        "10:10",
+                                                        "lbl_10_10".tr,
                                                         style: theme.textTheme
                                                             .bodySmall,
                                                       ),
@@ -360,8 +365,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                 MainAxisAlignment.center,
                                             children: [
                                               _buildFile(
-                                                context,
-                                                iMG: "IMG_0475",
+                                                iMG: "lbl_img_0475".tr,
                                               ),
                                               SizedBox(height: 3.v),
                                               Row(
@@ -371,7 +375,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                     CrossAxisAlignment.end,
                                                 children: [
                                                   Text(
-                                                    "2.4",
+                                                    "lbl_2_4".tr,
                                                     style: CustomTextStyles
                                                         .bodySmallBlack900_1,
                                                   ),
@@ -379,7 +383,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                     padding: EdgeInsets.only(
                                                         left: 1.h),
                                                     child: Text(
-                                                      "MB",
+                                                      "lbl_mb".tr,
                                                       style: CustomTextStyles
                                                           .bodySmallBlack900_1,
                                                     ),
@@ -407,7 +411,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                       top: 2.v,
                                                     ),
                                                     child: Text(
-                                                      "png",
+                                                      "lbl_png".tr,
                                                       style: CustomTextStyles
                                                           .bodySmallBlack900_1,
                                                     ),
@@ -416,7 +420,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                     padding: EdgeInsets.only(
                                                         left: 27.h),
                                                     child: Text(
-                                                      "10:15",
+                                                      "lbl_10_15".tr,
                                                       style: theme
                                                           .textTheme.bodySmall,
                                                     ),
@@ -476,8 +480,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                 MainAxisAlignment.center,
                                             children: [
                                               _buildFile1(
-                                                context,
-                                                iMG: "IMG_0481",
+                                                iMG: "lbl_img_0481".tr,
                                               ),
                                               SizedBox(height: 3.v),
                                               Padding(
@@ -488,7 +491,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                       CrossAxisAlignment.end,
                                                   children: [
                                                     Text(
-                                                      "2.8",
+                                                      "lbl_2_8".tr,
                                                       style: CustomTextStyles
                                                           .bodySmallBlack900_1,
                                                     ),
@@ -496,7 +499,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 1.h),
                                                       child: Text(
-                                                        "MB",
+                                                        "lbl_mb".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -525,7 +528,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                         top: 2.v,
                                                       ),
                                                       child: Text(
-                                                        "png",
+                                                        "lbl_png".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -534,7 +537,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 28.h),
                                                       child: Text(
-                                                        "10:15",
+                                                        "lbl_10_15".tr,
                                                         style: theme.textTheme
                                                             .bodySmall,
                                                       ),
@@ -604,7 +607,8 @@ class WhatsappChatPage extends StatelessWidget {
                                                           MainAxisSize.min,
                                                       children: [
                                                         Text(
-                                                          "Do you know what time is it?",
+                                                          "msg_do_you_know_what"
+                                                              .tr,
                                                           style: theme.textTheme
                                                               .bodyLarge,
                                                         ),
@@ -613,7 +617,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                           alignment: Alignment
                                                               .centerRight,
                                                           child: Text(
-                                                            "11:40",
+                                                            "lbl_11_40".tr,
                                                             style: theme
                                                                 .textTheme
                                                                 .bodySmall,
@@ -675,7 +679,8 @@ class WhatsappChatPage extends StatelessWidget {
                                                           bottom: 2.v,
                                                         ),
                                                         child: Text(
-                                                          "It’s morning in Tokyo ",
+                                                          "msg_it_s_morning_in"
+                                                              .tr,
                                                           style: theme.textTheme
                                                               .bodyLarge,
                                                         ),
@@ -697,7 +702,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                           top: 13.v,
                                                         ),
                                                         child: Text(
-                                                          "11:43",
+                                                          "lbl_11_43".tr,
                                                           style: theme.textTheme
                                                               .bodySmall,
                                                         ),
@@ -782,7 +787,8 @@ class WhatsappChatPage extends StatelessWidget {
                                                     child: SizedBox(
                                                       width: 237.h,
                                                       child: Text(
-                                                        "What is the most popular meal in Japan?",
+                                                        "msg_what_is_the_most"
+                                                            .tr,
                                                         maxLines: 2,
                                                         overflow: TextOverflow
                                                             .ellipsis,
@@ -800,7 +806,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                         bottom: 1.v,
                                                       ),
                                                       child: Text(
-                                                        "11:45",
+                                                        "lbl_11_45".tr,
                                                         style: theme.textTheme
                                                             .bodySmall,
                                                       ),
@@ -861,7 +867,8 @@ class WhatsappChatPage extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 bottom: 2.v),
                                                         child: Text(
-                                                          "Do you like it?",
+                                                          "lbl_do_you_like_it"
+                                                              .tr,
                                                           style: theme.textTheme
                                                               .bodyLarge,
                                                         ),
@@ -873,7 +880,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                           top: 8.v,
                                                         ),
                                                         child: Text(
-                                                          "11:45",
+                                                          "lbl_11_45".tr,
                                                           style: theme.textTheme
                                                               .bodySmall,
                                                         ),
@@ -937,7 +944,8 @@ class WhatsappChatPage extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           bottom: 2.v),
                                                       child: Text(
-                                                        "I think top two are:",
+                                                        "msg_i_think_top_two"
+                                                            .tr,
                                                         style: theme.textTheme
                                                             .bodyLarge,
                                                       ),
@@ -948,7 +956,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                         top: 8.v,
                                                       ),
                                                       child: Text(
-                                                        "11:50",
+                                                        "lbl_11_50".tr,
                                                         style: theme.textTheme
                                                             .bodySmall,
                                                       ),
@@ -1012,8 +1020,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                 MainAxisAlignment.center,
                                             children: [
                                               _buildFile(
-                                                context,
-                                                iMG: "IMG_0483",
+                                                iMG: "lbl_img_0483".tr,
                                               ),
                                               SizedBox(height: 3.v),
                                               Row(
@@ -1021,7 +1028,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    "2.8",
+                                                    "lbl_2_8".tr,
                                                     style: CustomTextStyles
                                                         .bodySmallBlack900_1,
                                                   ),
@@ -1029,7 +1036,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                     padding: EdgeInsets.only(
                                                         left: 1.h),
                                                     child: Text(
-                                                      "MB",
+                                                      "lbl_mb".tr,
                                                       style: CustomTextStyles
                                                           .bodySmallBlack900_1,
                                                     ),
@@ -1055,7 +1062,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                     padding: EdgeInsets.only(
                                                         left: 3.h),
                                                     child: Text(
-                                                      "png",
+                                                      "lbl_png".tr,
                                                       style: CustomTextStyles
                                                           .bodySmallBlack900_1,
                                                     ),
@@ -1064,7 +1071,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                     padding: EdgeInsets.only(
                                                         left: 29.h),
                                                     child: Text(
-                                                      "11:51",
+                                                      "lbl_11_51".tr,
                                                       style: theme
                                                           .textTheme.bodySmall,
                                                     ),
@@ -1124,8 +1131,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                 MainAxisAlignment.center,
                                             children: [
                                               _buildFile1(
-                                                context,
-                                                iMG: "IMG_0484",
+                                                iMG: "lbl_img_0484".tr,
                                               ),
                                               SizedBox(height: 3.v),
                                               Padding(
@@ -1136,7 +1142,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                 child: Row(
                                                   children: [
                                                     Text(
-                                                      "2.6",
+                                                      "lbl_2_6".tr,
                                                       style: CustomTextStyles
                                                           .bodySmallBlack900_1,
                                                     ),
@@ -1144,7 +1150,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 1.h),
                                                       child: Text(
-                                                        "MB",
+                                                        "lbl_mb".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -1171,14 +1177,14 @@ class WhatsappChatPage extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 3.h),
                                                       child: Text(
-                                                        "png",
+                                                        "lbl_png".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
                                                     ),
                                                     Spacer(),
                                                     Text(
-                                                      "11:51",
+                                                      "lbl_11_51".tr,
                                                       style: theme
                                                           .textTheme.bodySmall,
                                                     ),
@@ -1255,7 +1261,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                   padding: EdgeInsets.only(
                                                       bottom: 2.v),
                                                   child: Text(
-                                                    "I will write from Japan",
+                                                    "msg_i_will_write_from".tr,
                                                     style: theme
                                                         .textTheme.bodyLarge,
                                                   ),
@@ -1266,7 +1272,7 @@ class WhatsappChatPage extends StatelessWidget {
                                                     top: 8.v,
                                                   ),
                                                   child: Text(
-                                                    "17:47",
+                                                    "lbl_17_47".tr,
                                                     style: theme
                                                         .textTheme.bodySmall,
                                                   ),
@@ -1307,7 +1313,7 @@ class WhatsappChatPage extends StatelessWidget {
   }
 
   /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+  PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       height: 44.v,
       leadingWidth: 21.h,
@@ -1334,11 +1340,11 @@ class WhatsappChatPage extends StatelessWidget {
               child: Column(
                 children: [
                   AppbarSubtitleFour(
-                    text: "Martha Craig",
+                    text: "lbl_martha_craig".tr,
                     margin: EdgeInsets.only(right: 39.h),
                   ),
                   AppbarSubtitleSeven(
-                    text: "tap here for contact info",
+                    text: "msg_tap_here_for_contact".tr,
                   ),
                 ],
               ),
@@ -1365,10 +1371,7 @@ class WhatsappChatPage extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildFile(
-    BuildContext context, {
-    required String iMG,
-  }) {
+  Widget _buildFile({required String iMG}) {
     return Container(
       padding: EdgeInsets.all(7.h),
       decoration: AppDecoration.fillGrayE.copyWith(
@@ -1400,10 +1403,7 @@ class WhatsappChatPage extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildFile1(
-    BuildContext context, {
-    required String iMG,
-  }) {
+  Widget _buildFile1({required String iMG}) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 8.h,

@@ -1,3 +1,4 @@
+import 'controller/whatsapp_add_modal_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:what_sapp/core/app_export.dart';
@@ -10,13 +11,12 @@ import 'package:what_sapp/widgets/app_bar/custom_app_bar.dart';
 import 'package:what_sapp/widgets/custom_bottom_bar.dart';
 import 'package:what_sapp/widgets/custom_elevated_button.dart';
 
-class WhatsappAddModalScreen extends StatelessWidget {
-  WhatsappAddModalScreen({Key? key})
+// ignore_for_file: must_be_immutable
+class WhatsappAddModalScreen extends GetWidget<WhatsappAddModalController> {
+  const WhatsappAddModalScreen({Key? key})
       : super(
           key: key,
         );
-
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _buildAppBar(context),
+                    _buildAppBar(),
                     SizedBox(
                       height: 768.v,
                       width: double.maxFinite,
@@ -103,7 +103,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                               EdgeInsets.only(
                                                                   bottom: 2.v),
                                                           child: Text(
-                                                            "Good bye!",
+                                                            "lbl_good_bye".tr,
                                                             style: theme
                                                                 .textTheme
                                                                 .bodyLarge,
@@ -116,7 +116,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             top: 8.v,
                                                           ),
                                                           child: Text(
-                                                            "17:47",
+                                                            "lbl_17_47".tr,
                                                             style: theme
                                                                 .textTheme
                                                                 .bodySmall,
@@ -161,7 +161,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                             BorderRadiusStyle.roundedBorder8,
                                       ),
                                       child: Text(
-                                        "Fri, Jul 26",
+                                        "lbl_fri_jul_26".tr,
                                         style: theme.textTheme.labelLarge,
                                       ),
                                     ),
@@ -216,7 +216,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 bottom: 2.v),
                                                         child: Text(
-                                                          "Good morning!",
+                                                          "lbl_good_morning".tr,
                                                           style: theme.textTheme
                                                               .bodyLarge,
                                                         ),
@@ -228,7 +228,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                           top: 8.v,
                                                         ),
                                                         child: Text(
-                                                          "10:10",
+                                                          "lbl_10_10".tr,
                                                           style: theme.textTheme
                                                               .bodySmall,
                                                         ),
@@ -304,7 +304,8 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 bottom: 2.v),
                                                         child: Text(
-                                                          "Japan looks amazing!",
+                                                          "msg_japan_looks_amazing"
+                                                              .tr,
                                                           style: theme.textTheme
                                                               .bodyLarge,
                                                         ),
@@ -316,7 +317,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                           top: 8.v,
                                                         ),
                                                         child: Text(
-                                                          "10:10",
+                                                          "lbl_10_10".tr,
                                                           style: theme.textTheme
                                                               .bodySmall,
                                                         ),
@@ -381,8 +382,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 _buildFile(
-                                                  context,
-                                                  iMG: "IMG_0475",
+                                                  iMG: "lbl_img_0475".tr,
                                                 ),
                                                 SizedBox(height: 3.v),
                                                 Row(
@@ -392,7 +392,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                       CrossAxisAlignment.end,
                                                   children: [
                                                     Text(
-                                                      "2.4",
+                                                      "lbl_2_4".tr,
                                                       style: CustomTextStyles
                                                           .bodySmallBlack900_1,
                                                     ),
@@ -400,7 +400,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 1.h),
                                                       child: Text(
-                                                        "MB",
+                                                        "lbl_mb".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -429,7 +429,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                         top: 2.v,
                                                       ),
                                                       child: Text(
-                                                        "png",
+                                                        "lbl_png".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -438,7 +438,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 27.h),
                                                       child: Text(
-                                                        "10:15",
+                                                        "lbl_10_15".tr,
                                                         style: theme.textTheme
                                                             .bodySmall,
                                                       ),
@@ -498,8 +498,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 _buildFile1(
-                                                  context,
-                                                  iMG: "IMG_0481",
+                                                  iMG: "lbl_img_0481".tr,
                                                 ),
                                                 SizedBox(height: 3.v),
                                                 Padding(
@@ -510,7 +509,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                         CrossAxisAlignment.end,
                                                     children: [
                                                       Text(
-                                                        "2.8",
+                                                        "lbl_2_8".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -519,7 +518,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 left: 1.h),
                                                         child: Text(
-                                                          "MB",
+                                                          "lbl_mb".tr,
                                                           style: CustomTextStyles
                                                               .bodySmallBlack900_1,
                                                         ),
@@ -551,7 +550,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                           top: 2.v,
                                                         ),
                                                         child: Text(
-                                                          "png",
+                                                          "lbl_png".tr,
                                                           style: CustomTextStyles
                                                               .bodySmallBlack900_1,
                                                         ),
@@ -561,7 +560,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 left: 28.h),
                                                         child: Text(
-                                                          "10:15",
+                                                          "lbl_10_15".tr,
                                                           style: theme.textTheme
                                                               .bodySmall,
                                                         ),
@@ -631,7 +630,8 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             MainAxisSize.min,
                                                         children: [
                                                           Text(
-                                                            "Do you know what time is it?",
+                                                            "msg_do_you_know_what"
+                                                                .tr,
                                                             style: theme
                                                                 .textTheme
                                                                 .bodyLarge,
@@ -641,7 +641,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             alignment: Alignment
                                                                 .centerRight,
                                                             child: Text(
-                                                              "11:40",
+                                                              "lbl_11_40".tr,
                                                               style: theme
                                                                   .textTheme
                                                                   .bodySmall,
@@ -704,7 +704,8 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             bottom: 2.v,
                                                           ),
                                                           child: Text(
-                                                            "It’s morning in Tokyo ",
+                                                            "msg_it_s_morning_in"
+                                                                .tr,
                                                             style: theme
                                                                 .textTheme
                                                                 .bodyLarge,
@@ -728,7 +729,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             top: 13.v,
                                                           ),
                                                           child: Text(
-                                                            "11:43",
+                                                            "lbl_11_43".tr,
                                                             style: theme
                                                                 .textTheme
                                                                 .bodySmall,
@@ -818,7 +819,8 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                       child: SizedBox(
                                                         width: 237.h,
                                                         child: Text(
-                                                          "What is the most popular meal in Japan?",
+                                                          "msg_what_is_the_most"
+                                                              .tr,
                                                           maxLines: 2,
                                                           overflow: TextOverflow
                                                               .ellipsis,
@@ -837,7 +839,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                           bottom: 1.v,
                                                         ),
                                                         child: Text(
-                                                          "11:45",
+                                                          "lbl_11_45".tr,
                                                           style: theme.textTheme
                                                               .bodySmall,
                                                         ),
@@ -898,7 +900,8 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                               EdgeInsets.only(
                                                                   bottom: 2.v),
                                                           child: Text(
-                                                            "Do you like it?",
+                                                            "lbl_do_you_like_it"
+                                                                .tr,
                                                             style: theme
                                                                 .textTheme
                                                                 .bodyLarge,
@@ -911,7 +914,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             top: 8.v,
                                                           ),
                                                           child: Text(
-                                                            "11:45",
+                                                            "lbl_11_45".tr,
                                                             style: theme
                                                                 .textTheme
                                                                 .bodySmall,
@@ -978,7 +981,8 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 bottom: 2.v),
                                                         child: Text(
-                                                          "I think top two are:",
+                                                          "msg_i_think_top_two"
+                                                              .tr,
                                                           style: theme.textTheme
                                                               .bodyLarge,
                                                         ),
@@ -990,7 +994,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                           top: 8.v,
                                                         ),
                                                         child: Text(
-                                                          "11:50",
+                                                          "lbl_11_50".tr,
                                                           style: theme.textTheme
                                                               .bodySmall,
                                                         ),
@@ -1055,8 +1059,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 _buildFile(
-                                                  context,
-                                                  iMG: "IMG_0483",
+                                                  iMG: "lbl_img_0483".tr,
                                                 ),
                                                 SizedBox(height: 3.v),
                                                 Row(
@@ -1064,7 +1067,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      "2.8",
+                                                      "lbl_2_8".tr,
                                                       style: CustomTextStyles
                                                           .bodySmallBlack900_1,
                                                     ),
@@ -1072,7 +1075,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 1.h),
                                                       child: Text(
-                                                        "MB",
+                                                        "lbl_mb".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -1099,7 +1102,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 3.h),
                                                       child: Text(
-                                                        "png",
+                                                        "lbl_png".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -1108,7 +1111,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                       padding: EdgeInsets.only(
                                                           left: 29.h),
                                                       child: Text(
-                                                        "11:51",
+                                                        "lbl_11_51".tr,
                                                         style: theme.textTheme
                                                             .bodySmall,
                                                       ),
@@ -1168,8 +1171,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 _buildFile1(
-                                                  context,
-                                                  iMG: "IMG_0484",
+                                                  iMG: "lbl_img_0484".tr,
                                                 ),
                                                 SizedBox(height: 3.v),
                                                 Padding(
@@ -1180,7 +1182,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                   child: Row(
                                                     children: [
                                                       Text(
-                                                        "2.6",
+                                                        "lbl_2_6".tr,
                                                         style: CustomTextStyles
                                                             .bodySmallBlack900_1,
                                                       ),
@@ -1189,7 +1191,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 left: 1.h),
                                                         child: Text(
-                                                          "MB",
+                                                          "lbl_mb".tr,
                                                           style: CustomTextStyles
                                                               .bodySmallBlack900_1,
                                                         ),
@@ -1219,14 +1221,14 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                             EdgeInsets.only(
                                                                 left: 3.h),
                                                         child: Text(
-                                                          "png",
+                                                          "lbl_png".tr,
                                                           style: CustomTextStyles
                                                               .bodySmallBlack900_1,
                                                         ),
                                                       ),
                                                       Spacer(),
                                                       Text(
-                                                        "11:51",
+                                                        "lbl_11_51".tr,
                                                         style: theme.textTheme
                                                             .bodySmall,
                                                       ),
@@ -1307,7 +1309,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                   padding: EdgeInsets.only(
                                                       bottom: 2.v),
                                                   child: Text(
-                                                    "I will write from Japan",
+                                                    "msg_i_will_write_from".tr,
                                                     style: theme
                                                         .textTheme.bodyLarge,
                                                   ),
@@ -1318,7 +1320,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                                     top: 8.v,
                                                   ),
                                                   child: Text(
-                                                    "17:47",
+                                                    "lbl_17_47".tr,
                                                     style: theme
                                                         .textTheme.bodySmall,
                                                   ),
@@ -1358,10 +1360,10 @@ class WhatsappAddModalScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Spacer(),
-                                  _buildActions(context),
+                                  _buildActions(),
                                   SizedBox(height: 8.v),
                                   CustomElevatedButton(
-                                    text: "Cancel",
+                                    text: "lbl_cancel".tr,
                                   ),
                                 ],
                               ),
@@ -1376,13 +1378,13 @@ class WhatsappAddModalScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
+        bottomNavigationBar: _buildBottomBar(),
       ),
     );
   }
 
   /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+  PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       height: 44.v,
       leadingWidth: 20.h,
@@ -1409,11 +1411,11 @@ class WhatsappAddModalScreen extends StatelessWidget {
               child: Column(
                 children: [
                   AppbarSubtitleFour(
-                    text: "Martha Craig",
+                    text: "lbl_martha_craig".tr,
                     margin: EdgeInsets.only(right: 39.h),
                   ),
                   AppbarSubtitleSeven(
-                    text: "tap here for contact info",
+                    text: "msg_tap_here_for_contact".tr,
                   ),
                 ],
               ),
@@ -1440,7 +1442,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildActions(BuildContext context) {
+  Widget _buildActions() {
     return Container(
       decoration: AppDecoration.fillGray200.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder15,
@@ -1474,7 +1476,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 21.h),
                   child: Text(
-                    "Camera",
+                    "lbl_camera".tr,
                     style: CustomTextStyles.titleLargeBlack900,
                   ),
                 ),
@@ -1509,7 +1511,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 20.h),
                   child: Text(
-                    "Photo & Video Library",
+                    "msg_photo_video_library".tr,
                     style: CustomTextStyles.titleLargeBlack900,
                   ),
                 ),
@@ -1540,7 +1542,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 23.h),
                   child: Text(
-                    "Document",
+                    "lbl_document".tr,
                     style: CustomTextStyles.titleLargeBlack900,
                   ),
                 ),
@@ -1571,7 +1573,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 22.h),
                   child: Text(
-                    "Location",
+                    "lbl_location".tr,
                     style: CustomTextStyles.titleLargeBlack900,
                   ),
                 ),
@@ -1603,7 +1605,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 20.h),
                   child: Text(
-                    "Contact",
+                    "lbl_contact".tr,
                     style: CustomTextStyles.titleLargeBlack900,
                   ),
                 ),
@@ -1620,17 +1622,14 @@ class WhatsappAddModalScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {},
     );
   }
 
   /// Common widget
-  Widget _buildFile(
-    BuildContext context, {
-    required String iMG,
-  }) {
+  Widget _buildFile({required String iMG}) {
     return Container(
       padding: EdgeInsets.all(7.h),
       decoration: AppDecoration.fillGrayE.copyWith(
@@ -1662,10 +1661,7 @@ class WhatsappAddModalScreen extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildFile1(
-    BuildContext context, {
-    required String iMG,
-  }) {
+  Widget _buildFile1({required String iMG}) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 8.h,
