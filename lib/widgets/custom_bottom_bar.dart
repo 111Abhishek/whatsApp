@@ -1,0 +1,179 @@
+import 'package:flutter/material.dart';
+import 'package:what_sapp/core/app_export.dart';
+
+class CustomBottomBar extends StatefulWidget {
+  CustomBottomBar({this.onChanged});
+
+  Function(BottomBarEnum)? onChanged;
+
+  @override
+  CustomBottomBarState createState() => CustomBottomBarState();
+}
+
+class CustomBottomBarState extends State<CustomBottomBar> {
+  int selectedIndex = 0;
+
+  List<BottomMenuModel> bottomMenuList = [
+    BottomMenuModel(
+      icon: ImageConstant.imgNavStatusLightBlueA700,
+      activeIcon: ImageConstant.imgNavStatusLightBlueA700,
+      title: "Status",
+      type: BottomBarEnum.Status,
+    ),
+    BottomMenuModel(
+      icon: ImageConstant.imgIconPrimarycontainer,
+      activeIcon: ImageConstant.imgIconPrimarycontainer,
+      title: "Calls",
+      type: BottomBarEnum.Calls,
+    ),
+    BottomMenuModel(
+      icon: ImageConstant.imgIconPrimarycontainer22x26,
+      activeIcon: ImageConstant.imgIconPrimarycontainer22x26,
+      title: "Camera",
+      type: BottomBarEnum.Camera,
+    ),
+    BottomMenuModel(
+      icon: ImageConstant.imgNavChats,
+      activeIcon: ImageConstant.imgNavChats,
+      title: "Chats",
+      type: BottomBarEnum.Chats,
+    ),
+    BottomMenuModel(
+      icon: ImageConstant.imgIconPrimarycontainer25x25,
+      activeIcon: ImageConstant.imgIconPrimarycontainer25x25,
+      title: "Settings",
+      type: BottomBarEnum.Settings,
+    )
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 83.v,
+      decoration: BoxDecoration(
+        color: appTheme.gray100,
+        boxShadow: [
+          BoxShadow(
+            color: appTheme.gray500,
+            spreadRadius: 2.h,
+            blurRadius: 2.h,
+            offset: Offset(
+              0,
+              -0.33,
+            ),
+          ),
+        ],
+      ),
+      child: BottomNavigationBar(
+        backgroundColor: Colors.transparent,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedFontSize: 0,
+        elevation: 0,
+        currentIndex: selectedIndex,
+        type: BottomNavigationBarType.fixed,
+        items: List.generate(bottomMenuList.length, (index) {
+          return BottomNavigationBarItem(
+            icon: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CustomImageView(
+                  imagePath: bottomMenuList[index].icon,
+                  height: 24.v,
+                  width: 23.h,
+                  color: theme.colorScheme.primaryContainer.withOpacity(1),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5.v),
+                  child: Text(
+                    bottomMenuList[index].title ?? "",
+                    style: theme.textTheme.labelMedium!.copyWith(
+                      color: theme.colorScheme.primaryContainer,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            activeIcon: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CustomImageView(
+                  imagePath: bottomMenuList[index].activeIcon,
+                  height: 26.adaptSize,
+                  width: 26.adaptSize,
+                  color: appTheme.lightBlueA700,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 3.v),
+                  child: Text(
+                    bottomMenuList[index].title ?? "",
+                    style: CustomTextStyles.labelMediumLightblueA700.copyWith(
+                      color: appTheme.lightBlueA700,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            label: '',
+          );
+        }),
+        onTap: (index) {
+          selectedIndex = index;
+          widget.onChanged?.call(bottomMenuList[index].type);
+          setState(() {});
+        },
+      ),
+    );
+  }
+}
+
+enum BottomBarEnum {
+  Status,
+  Calls,
+  Camera,
+  Chats,
+  Settings,
+}
+
+class BottomMenuModel {
+  BottomMenuModel({
+    required this.icon,
+    required this.activeIcon,
+    this.title,
+    required this.type,
+  });
+
+  String icon;
+
+  String activeIcon;
+
+  String? title;
+
+  BottomBarEnum type;
+}
+
+class DefaultWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.all(10),
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Please replace the respective Widget here',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
